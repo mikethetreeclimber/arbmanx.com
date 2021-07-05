@@ -9,6 +9,5 @@ Route::get('/customers', function () {
 
 
 Route::group(['middleware'=> 'auth'], function(){
-    // Route::view('/users', 'admin.users.index');
     Route::get('/trees/assessment', Assessment::class);
 });
