@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitter:wght@500&family=Dancing+Script:wght@400;600&family=Lato&family=Lobster&family=Open+Sans&family=Raleway&family=Roboto&family=Source+Sans+Pro&display=swap");
 /**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
@@ -14,7 +15,9 @@
  *
  * See: https://github.com/laravel-frontend-presets/tall/issues/7
  */
- input:invalid, textarea:invalid, select:invalid {
+input:invalid,
+textarea:invalid,
+select:invalid {
     box-shadow: none;
 }
 

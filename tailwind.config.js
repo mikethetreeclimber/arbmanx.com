@@ -6,7 +6,14 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                lobster: ['lobster', 'sans-serif'],
+                bitter: ['bitter', 'sans-serif'],
+                heading: ['dancing script', 'sans-serif'],
+                lato: ['lato', 'sans-serif'],
+                raleway: ['raleway', 'sans-serif'],
+                open: ['open sans', 'sans-serif'],
+                roboto: ['roboto', 'sans-serif'],
+                source: ['source sans pro', 'sans-serif'],
             },
             colors: {
                 blueGray: colors.blueGray,
