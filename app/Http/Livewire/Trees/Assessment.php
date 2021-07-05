@@ -9,7 +9,6 @@ class Assessment extends Component
 {
     public function render()
     {
-        dd(User::all());
         return view('livewire.trees.assessment');
     }
 }
