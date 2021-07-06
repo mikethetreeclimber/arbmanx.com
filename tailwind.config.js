@@ -3,6 +3,7 @@ const colors = require('tailwindcss/colors');
 const { blueGray } = require('tailwindcss/colors');
 
 module.exports = {
+
     theme: {
         extend: {
             fontFamily: {
@@ -29,6 +30,9 @@ module.exports = {
             backgroundColor: ['active'],
         }
     },
+    presets: [
+        require('./vendor/ph7jack/wireui/tailwind.config.js')
+    ],
     purge: {
         content: [
             './app/**/*.php',
@@ -40,6 +44,9 @@ module.exports = {
             './resources/**/*.php',
             './resources/**/*.vue',
             './resources/**/*.twig',
+            './vendor/ph7jack/wireui/resources/**/*.blade.php',
+            './vendor/ph7jack/wireui/ts/**/*.ts',
+            './vendor/ph7jack/wireui/src/View/**/*.php'
         ],
         options: {
             defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],

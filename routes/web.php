@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Trees\Tree;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,4 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
+Route::get('/test', function(){
+    $searchTerm = 'red';
+    $collection = Tree::where('common_name', 'LIKE',  '%'.' '.$searchTerm.'%')->get(['id', 'common_name']);
+
+    $trees = $collection->map(function($item, $key){
+            return [ 'value'=> $item->id, 'description'=>$item->common_name];
+        });
+        return collect($trees);
+
+
+});

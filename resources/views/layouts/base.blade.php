@@ -31,6 +31,7 @@
 <body class="font-lobster">
     @yield('body')
 
+    <wireui:scripts />
     @livewireScripts
 </body>
 

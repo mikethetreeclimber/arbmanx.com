@@ -1,58 +1,49 @@
 <x-forms.form-card>
 
-    <x-forms.form-section>
-        <x-forms.form-input-block>
+    @if ($step === 'tree_species')
+        <div class="px-4 py-6">
 
-            <x-slot name="label">
-                Tree Species
-            </x-slot>
-            <select id="animals"
-                class="rounded-lg border-transparent flex-1 appearance-none border border-lime-300 w-full py-2 px-4 bg-black bg-opacity-50 text-amber-500 placeholder-amber-500 font-semibold shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-lime-600 focus:border-transparent"
-                name="animals">
-                <option value="">
-                    Select an options
-                </option>
-                <option value="dog">
-                    Dog
-                </option>
-                <option value="cat">
-                    Cat
-                </option>
-            </select>
-        </x-forms.form-input-block>
-    </x-forms.form-section>
+            <livewire:trees.tree-species-select />
 
-    {{-- <x-forms.form-section-inline>
-        <x-forms.form-input-inline>
-            <x-slot name="label">
-                Height
-            </x-slot>
-            <x-forms.input placeholder="Height" />
-        </x-forms.form-input-inline>
+        </div>
+    @endif
 
-        <x-forms.form-input-inline>
-            <x-slot name="label">
-                DBH
-            </x-slot>
-            <x-forms.input placeholder="DBH" />
-        </x-forms.form-input-inline>
-    </x-forms.form-section-inline>
+    @if ($step === 'height_dbh')
+        <x-forms.form-section-inline>
+            <x-forms.form-input-inline>
+                <x-slot name="label">
+                    Height
+                </x-slot>
+                <x-forms.input wire:model="height" placeholder="Height" />
+            </x-forms.form-input-inline>
+            <x-forms.form-input-inline>
+                <x-slot name="label">
+                    DBH
+                </x-slot>
+                <x-forms.input wire:model="dbh" placeholder="DBH" />
+            </x-forms.form-input-inline>
+            <button wire:click="pushDetails" class="bg-white text-black py-4 px-2"></button>
+        </x-forms.form-section-inline>
 
-    <x-forms.form-section>
-        <x-forms.form-input-block>
-            <x-slot name="label">
-                Spread
-            </x-slot>
-            <x-forms.input placeholder="Spread" />
-        </x-forms.form-input-block>
+    @endif
 
-        <x-forms.form-input-block>
-            <x-slot name="label">
-                Trunks
-            </x-slot>
-            <x-forms.input placeholder="Trunks" />
-        </x-forms.form-input-block>
-    </x-forms.form-section> --}}
+    @if ($step === 3)
+        <x-forms.form-section>
+            <x-forms.form-input-block>
+                <x-slot name="label">
+                    Spread
+                </x-slot>
+                <x-forms.input placeholder="Spread" />
+            </x-forms.form-input-block>
+
+            <x-forms.form-input-block>
+                <x-slot name="label">
+                    Trunks
+                </x-slot>
+                <x-forms.input placeholder="Trunks" />
+            </x-forms.form-input-block>
+        </x-forms.form-section>
+    @endif
 
 </x-forms.form-card>
 
