@@ -1,75 +1,53 @@
-<x-forms.form-card>
-
-    @if ($step === 'tree_species')
-        <div class="px-4 py-6">
-
-            <livewire:trees.tree-species-select />
-
-        </div>
-    @endif
-
-    @if ($step === 'height_dbh')
-        <x-forms.form-section-inline>
-            <x-forms.form-input-inline>
-                <x-slot name="label">
-                    Height
-                </x-slot>
-                <x-forms.input wire:model="height" placeholder="Height" />
-            </x-forms.form-input-inline>
-            <x-forms.form-input-inline>
-                <x-slot name="label">
-                    DBH
-                </x-slot>
-                <x-forms.input wire:model="dbh" placeholder="DBH" />
-            </x-forms.form-input-inline>
-            <button wire:click="pushDetails" class="bg-white text-black py-4 px-2"></button>
-        </x-forms.form-section-inline>
-
-    @endif
-
-    @if ($step === 3)
-        <x-forms.form-section>
-            <x-forms.form-input-block>
-                <x-slot name="label">
-                    Spread
-                </x-slot>
-                <x-forms.input placeholder="Spread" />
-            </x-forms.form-input-block>
-
-            <x-forms.form-input-block>
-                <x-slot name="label">
-                    Trunks
-                </x-slot>
-                <x-forms.input placeholder="Trunks" />
-            </x-forms.form-input-block>
-        </x-forms.form-section>
-    @endif
-
-</x-forms.form-card>
+@if ($step === 'tree_species')
+    <div class="px-4 py-6">
+        <livewire:trees.tree-species-select />
+    </div>
+@endif
 
 
-{{-- <div class="items-center w-full p-8 space-y-4 text-gray-500 md:inline-flex md:space-y-0">
-        <h2 class="max-w-sm mx-auto md:w-4/12">
-            Change password
-        </h2>
-        <div class="w-full max-w-sm pl-2 mx-auto space-y-5 md:w-5/12 md:pl-9 md:inline-flex">
-            <div class=" ">
-                <input type="text" id="user-info-password"
-                    class=" rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                    placeholder="Password" />
+
+@if ($step === 'height_dbh')
+    <div class="max-w-3xl w-full mx-auto z-10">
+        <div class="flex flex-col">
+            <div class="bg-gray-900 border border-gray-900 shadow-lg  rounded-3xl p-4 m-4">
+                <div class="flex-none sm:flex">
+                    <div class="flex-auto sm:ml-5 justify-evenly">
+                        <div class="grid grid-cols-2 mb-3 gap-4 space-y-4 font-source">
+                            <p class="col-span-2 text-center text-amber-500 text-3xl">Enter the Proper Demenisons
+                                Requested
+                            </p>
+                            <x-forms.input class="h-12 text-md" wire:model="height" placeholder="Enter the Height" />
+
+                            <x-forms.input class="h-12 text-md" wire:model="dbh" placeholder="Enter the DBH" />
+
+                            <x-forms.input class="h-12 text-md" wire:model="spread" placeholder="Enter the Spread" />
+
+                            <x-forms.input class="h-12 text-md" wire:model="numberOfTrunks"
+                                placeholder="Enter the number of Trunks" />
+                        </div>
+                        <button wire:click="createAssessedTreeDetails"
+                            class="bg-lime-700 px-2 py-4 block rounded shadow border border-amber-500 font-source text-xl text-amber-500 w-full">Go
+                            to Next
+                            Step</button>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="text-center md:w-3/12 md:pl-6">
-            <button type="button"
-                class="py-2 px-4  bg-pink-600 hover:bg-pink-700 focus:ring-pink-500 focus:ring-offset-pink-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                Change
-            </button>
-        </div>
     </div>
-    <hr />
-    <div class="w-full px-4 pb-4 ml-auto text-gray-500 md:w-1/3">
-        <button type="submit"
-            class="py-2 px-4  bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-            Save
-        </button>
-    </div> --}}
+@endif
+@if ($step === 'characteristics')
+    {{-- @if (session()->has('success'))
+        <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+            <p class="font-bold">
+                {{ session('success') }}
+            </p>
+        </div>
+    @endif --}}
+
+    <h1 class="text-5xl"> Characteristics ....</h1>
+    <h1 class="text-5xl"> Characteristics ....</h1>
+    <h1 class="text-5xl"> Characteristics ....</h1>
+    <h1 class="text-5xl"> Characteristics ....</h1>
+    <h1 class="text-5xl"> Characteristics ....</h1>
+    <h1 class="text-5xl"> Characteristics ....</h1>
+@endif

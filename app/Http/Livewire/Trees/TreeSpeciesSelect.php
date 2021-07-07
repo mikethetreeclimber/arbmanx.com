@@ -14,15 +14,14 @@ class TreeSpeciesSelect extends Component
     public $search = '';
     public $assessedTree = [];
 
+    public function mount()
+    {
+
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
-    }
-
-    public function speciesAddedToAssessedTree(Tree $tree)
-    {
-        $this->assessedTree[] = ['tree_id' => $tree->id];
-        $this->emitUp('treeAdded', $this->assessedTree);
     }
 
     public function render()

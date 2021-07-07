@@ -5,26 +5,41 @@ namespace App\Http\Livewire\Trees;
 use App\Models\User;
 use Livewire\Component;
 use App\Models\Trees\Tree;
+use App\Models\Trees\AssessedTree;
 
 class Assessment extends Component
 {
     public $step = 'tree_species';
-    public $assessedTree = [];
+    public $treeDetails;
+    public $owner_id;
+    public $tree_id;
     public $dbh;
     public $height;
-    protected $listeners = ['treeAdded'];
+    public $spread;
+    public $numberOfTrunks;
+    protected $listeners = ['treeSpeciesAdded'];
 
-    public function treeAdded(Tree $tree)
+    public function treeSpeciesAdded(Tree $tree)
     {
-        $this->assessedTree[] = ['tree_id' => $tree->id];
+        $this->tree_id = $tree->id;
         $this->step = 'height_dbh';
     }
 
-    public function pushDetails()
+    public function createAssessedTreeDetails()
     {
-         array_push($this->assessedTree ,['dbh' => $this->dbh, 'height' => $this->height]);
-        dd($this->assessedTree);
+        $this->step = 'characteristics';
 
+        $assessedTree = AssessedTree::create([
+                'owner_id' => 5,
+                'tree_id' =>  $this->tree_id,
+                'dbh' => $this->dbh,
+                'height' => $this->height,
+                'spread' => $this->spread,
+                'number_of_trunks' => $this->numberOfTrunks
+        ]);
+        $assessedTree->save();
+        session()->flash('success', 'The tree details were successfully added to the Hazard Assessment');
+        return redirect()->back();
     }
 
     public function render()
