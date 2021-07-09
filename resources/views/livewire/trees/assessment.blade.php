@@ -43,7 +43,7 @@
                 </p>
             </div>
         @endif
-        <livewire:trees.tree-characteristic />
+        @livewire('trees.tree-characteristic', ['assessment' => $assessment])
     </div>
 
 @endif
