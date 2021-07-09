@@ -30,9 +30,6 @@ module.exports = {
             backgroundColor: ['active'],
         }
     },
-    presets: [
-        require('./vendor/ph7jack/wireui/tailwind.config.js')
-    ],
     purge: {
         content: [
             './app/**/*.php',

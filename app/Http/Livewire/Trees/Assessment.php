@@ -27,7 +27,7 @@ class Assessment extends Component
 
     public function createAssessedTreeDetails()
     {
-        $this->step = 'characteristics';
+
 
         $assessedTree = AssessedTree::create([
                 'owner_id' => 5,
@@ -38,8 +38,9 @@ class Assessment extends Component
                 'number_of_trunks' => $this->numberOfTrunks
         ]);
         $assessedTree->save();
+        $this->step = 'characteristics';
         session()->flash('success', 'The tree details were successfully added to the Hazard Assessment');
-        return redirect()->back();
+
     }
 
     public function render()

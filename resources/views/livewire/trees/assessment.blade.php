@@ -4,8 +4,6 @@
     </div>
 @endif
 
-
-
 @if ($step === 'height_dbh')
     <div class="max-w-3xl w-full mx-auto z-10">
         <div class="flex flex-col">
@@ -35,19 +33,17 @@
         </div>
     </div>
 @endif
-@if ($step === 'characteristics')
-    {{-- @if (session()->has('success'))
-        <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
-            <p class="font-bold">
-                {{ session('success') }}
-            </p>
-        </div>
-    @endif --}}
 
-    <h1 class="text-5xl"> Characteristics ....</h1>
-    <h1 class="text-5xl"> Characteristics ....</h1>
-    <h1 class="text-5xl"> Characteristics ....</h1>
-    <h1 class="text-5xl"> Characteristics ....</h1>
-    <h1 class="text-5xl"> Characteristics ....</h1>
-    <h1 class="text-5xl"> Characteristics ....</h1>
+@if ($step === 'characteristics')
+    <div class="px-4 py-6">
+        @if (session()->has('success'))
+            <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+                <p class="font-bold">
+                    {{ session('success') }}
+                </p>
+            </div>
+        @endif
+        <livewire:trees.tree-characteristic />
+    </div>
+
 @endif

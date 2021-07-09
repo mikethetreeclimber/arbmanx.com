@@ -18,6 +18,7 @@ class CreateAssessmentsTable extends Migration
             $table->foreignId('assessed_tree_id')->constrained('assessed_trees');
             $table->foreignId('assessor_id')->constrained('users');
             $table->integer('hazard_rating')->nullable();
+            $table->string('last_section_completed')->default('assessment-start');
             $table->timestamp('completed_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
