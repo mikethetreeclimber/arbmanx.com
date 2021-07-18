@@ -7,6 +7,7 @@ use App\Models\Trees\TreeCharacteristic as Characteristics;
 
 class TreeCharacteristic extends Component
 {
+    public $section = 1;
     public $assessment;
     public $treeCharacteristics;
     public $treeForms;
@@ -15,6 +16,16 @@ class TreeCharacteristic extends Component
     public $crownClass;
     public $treeAgeClasses;
     public $treeSpecialValues;
+
+    public function goToNextSection()
+    {
+        $this->section++;
+    }
+
+    public function goToPreviousSection()
+    {
+        $this->section--;
+    }
 
 
     public function addCharacteristic()
