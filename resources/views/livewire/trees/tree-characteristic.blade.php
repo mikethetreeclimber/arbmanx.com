@@ -81,32 +81,101 @@
                     </div>
                 @endif
 
-                <div class="grid grid-cols-4 gap-12 p-2 m-2 md:p-4 md:m-4">
-                    @if ($section === 1)
-                        <div></div>
-                    @else
-                        <button wire:click="goToPreviousSection" type="button"
+                @if ($section === 3)
+                    <div
+                        class="bg-gray-900 border bg-opacity-80 border-gray-900 shadow-2xl  rounded-3xl p-2 m-2 md:p-4 md:m-4">
+                        <div class="flex justify-content-center">
+                            <div class="flex-auto justify-evenly w-full">
+                                <div class="flex items-center border border-emerald-500 rounded-xl px-4 py-4">
+                                    <div class="grid grid-cols-2 align-middle flex-1 pl-1 md:px-2 m-1">
+                                        <div
+                                            class="flex justify-center items-center text-lg md:text-2xl md:mb-2 font-bold text-amber-300 text-center">
+                                            <h1>Age Class</h1>
+                                        </div>
+                                        <div class=" text-sm md:text-lg font-bold text-gray-200 text-left">
+                                            <div class="grid grid-cols-2 gap-2 relative">
+                                                @foreach ($treeAgeClasses as $key => $ageClass)
+                                                    <div class="col-span-2 my-1">
+                                                        <input type="radio" wire:model.lazy="ageClass"
+                                                            value="{{ $ageClass->id }}"
+                                                            name="{{ $ageClass->type }}"
+                                                            id="option{{ $key }}"
+                                                            class="form-radio text-emerald-500" />
+                                                        <label for="option{{ $key }}"
+                                                            class="ml-2">{{ $ageClass->name }}</label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @if ($section === 4)
+
+                    <div
+                        class="bg-gray-900 border bg-opacity-80 border-gray-900 shadow-2xl  rounded-3xl p-2 m-2 md:p-4 md:m-4">
+                        <div class="flex justify-content-center">
+                            <div class="flex-auto justify-evenly w-full">
+                                <div class="flex items-center border border-emerald-500 rounded-xl px-4 py-4">
+                                    <div class="grid grid-cols-2 align-middle flex-1 pl-1 md:px-2 m-1">
+                                        <div
+                                            class="flex justify-center items-center text-lg md:text-2xl md:mb-2 font-bold text-amber-300 text-center">
+                                            <h1>Special Value</h1>
+                                        </div>
+                                        <div class=" text-sm md:text-lg font-bold text-gray-200 text-left">
+                                            <div class="grid grid-cols-2 gap-2 relative">
+                                                @foreach ($treeSpecialValues as $specialValue)
+                                                    <div class="col-span-2 my-1">
+                                                        <input type="checkbox" wire:model="selectedSpecialValues"
+                                                            value="{{ $specialValue->id }}"
+                                                            name="{{ $specialValue->type }}{{ $specialValue->id }}"
+                                                            id="option{{ $specialValue->id }}"
+                                                            class="form-radio text-emerald-500" />
+                                                        <label for="option{{ $specialValue->id }}"
+                                                            class="ml-2">{{ $specialValue->name }}</label>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                <div class="flex items-center justify-between p-2 m-2 md:p-4 md:m-4">
+                    @if ($section >= 2)
+                        <button wire:click="goBack" type="button"
                             class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
                             back
                         </button>
+                    @else
+                        <div></div>
                     @endif
-                    @if ($section === 2)
+
+                    @if ($section > 1)
                         <button type="submit"
                             class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
                             save
                         </button>
-
+                        <button type="button"
+                            class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
+                            review
+                        </button>
                     @endif
-                    <button type="button"
-                        class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
-                        review
-                    </button>
-                    @if ($section < 2)
-                        <button wire:click="goToNextSection" type="button"
+
+                    @if ($section <= 3)
+                        <button wire:click="goForward" type="button"
                             class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
                             Next
                         </button>
                     @endif
+
                 </div>
             </div>
         </div>

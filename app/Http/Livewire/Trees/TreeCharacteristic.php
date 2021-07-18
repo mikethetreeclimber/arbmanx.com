@@ -15,14 +15,16 @@ class TreeCharacteristic extends Component
     public $treeCrownClasses;
     public $crownClass;
     public $treeAgeClasses;
+    public $ageClass;
     public $treeSpecialValues;
+    public $selectedSpecialValues = [];
 
-    public function goToNextSection()
+    public function goForward()
     {
         $this->section++;
     }
 
-    public function goToPreviousSection()
+    public function goBack()
     {
         $this->section--;
     }
@@ -30,9 +32,19 @@ class TreeCharacteristic extends Component
 
     public function addCharacteristic()
     {
-        // $this->assessment->characteristics()->attach($this->form);
-        dump($this->crownClass, $this->form);
+        dump($this->form, $this->crownClass,  $this->assessment, $this->ageClass, $this->selectedSpecialValues);
         die;
+        $this->assessment->characteristics()->attach($this->form);
+        $this->assessment->characteristics()->attach($this->crownClass);
+        $this->assessment->characteristics()->attach($this->ageClass);
+        foreach($this->selectedSpecialValues as $specialValue)
+        {
+            $this->assessment->characteristics()->attach($specialValue);
+        }
+
+        $this->emitUp('switchStep', 'health');
+
+        session()->flash('success', 'The Tree\'s Characteristics were successfully added to the Hazard Assessment');
     }
 
     public function getCharacteristics()

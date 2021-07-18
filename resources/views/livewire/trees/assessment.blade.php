@@ -47,3 +47,9 @@
     </div>
 
 @endif
+
+@if ($step === 'health')
+    <div class="px-4 py-6 text-3xl text-red-500">
+        This is The health form
+    </div>
+@endif
