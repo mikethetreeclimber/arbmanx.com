@@ -12,6 +12,7 @@ class TreeCharacteristic extends Component
     public $treeForms;
     public $form;
     public $treeCrownClasses;
+    public $crownClass;
     public $treeAgeClasses;
     public $treeSpecialValues;
 
