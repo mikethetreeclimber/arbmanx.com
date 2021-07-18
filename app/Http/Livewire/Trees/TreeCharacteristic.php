@@ -18,7 +18,8 @@ class TreeCharacteristic extends Component
 
     public function addCharacteristic()
     {
-        dd($this->form);
+        $this->assessment->characteristics()->attach($this->form);
+        // dd($this->form);
     }
 
     public function getCharacteristics()
