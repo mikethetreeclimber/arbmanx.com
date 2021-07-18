@@ -43,6 +43,35 @@
 
                     </div>
                 </div>
+                <div
+                    class="bg-gray-900 border bg-opacity-80 border-gray-900 shadow-2xl  rounded-3xl p-2 m-2 md:p-4 md:m-4">
+                    <div class="flex justify-content-center">
+                        <div class="flex-auto justify-evenly w-full">
+                            <div class="flex items-center border border-emerald-500 rounded-xl px-4 py-4">
+                                <div class="grid grid-cols-2 align-middle flex-1 pl-1 md:px-2 m-1">
+                                    <div
+                                        class="flex justify-center items-center text-lg md:text-2xl md:mb-2 font-bold text-amber-300 text-center">
+                                        <h1>Crown Class</h1>
+                                    </div>
+                                    <div class=" text-sm md:text-lg font-bold text-gray-200 text-left">
+                                        <div class="grid grid-cols-2 gap-2 relative">
+                                            @foreach ($treeCrownClasses as $key => $crownClass)
+                                                <div class="col-span-2 my-1">
+                                                    <input type="radio" wire:model="crownClass"
+                                                        value="{{ $crownClass->id }}" name="{{ $crownClass->type }}"
+                                                        id="option{{ $key }}"
+                                                        class="form-radio text-emerald-500" />
+                                                    <label for="option{{ $key }}"
+                                                        class="ml-2">{{ $crownClass->name }}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="grid grid-cols-4 gap-12 p-2 m-2 md:p-4 md:m-4">
 
