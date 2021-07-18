@@ -25,14 +25,13 @@
                                     <div class=" text-sm md:text-lg font-bold text-gray-200 text-left">
                                         <div class="grid grid-cols-2 gap-2 relative">
 
-                                            @foreach ($treeForms as $key => $form)
+                                            @foreach ($treeForms as $form)
 
                                                 <div class="col-span-2 my-1">
-                                                    <input wire:model="form" name="form" type="radio"
-                                                        id="option{{ $key }}"
+                                                    <input wire:model.lazy="form" name="{{ $form->type }}"
+                                                        type="radio" value="{{ $form->id }}" id="option"
                                                         class="form-radio text-emerald-500" />
-                                                    <label for="option{{ $key }}"
-                                                        class="ml-2">{{ $form->name }}</label>
+                                                    <label for="option" class="ml-2">{{ $form->name }}</label>
                                                 </div>
                                             @endforeach
 

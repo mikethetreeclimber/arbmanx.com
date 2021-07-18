@@ -16,12 +16,6 @@ class TreeCharacteristic extends Component
     public $treeSpecialValues;
 
 
-    public function mount($assessment)
-    {
-        $this->assessment = $assessment;
-        $this->getCharacteristics();
-    }
-
     public function addCharacteristic()
     {
         dd($this->form);
@@ -41,6 +35,7 @@ class TreeCharacteristic extends Component
 
     public function render()
     {
+        $this->getCharacteristics();
         return view('livewire.trees.tree-characteristic');
     }
 }
