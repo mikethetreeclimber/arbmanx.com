@@ -1,13 +1,28 @@
 <div>
+    @if (session()->has('success'))
+        <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+            <p class="font-bold">
+                {{ session('success') }}
+            </p>
+        </div>
+    @endif
+    @if (session()->has('error'))
+        <div class="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+            <p class="font-bold">
+                {{ session('error') }}
+            </p>
+        </div>
+    @endif
     @if ($category === 'tree_species')
         <div class="px-4 py-6">
+
             <livewire:trees.tree-species-select />
         </div>
     @endif
 
     @if ($category === 'height_dbh')
         <div class="max-w-3xl w-full mx-auto z-10">
-            <div class="flex flex-col">
+            <div class="flex ">
                 <div class="bg-gray-900 border border-gray-900 shadow-lg  rounded-3xl p-4 m-4">
                     <div class="flex-none sm:flex">
                         <div class="flex-auto sm:ml-5 justify-evenly">
@@ -39,8 +54,7 @@
 
     @if ($category === 'characteristics')
         <div class="px-4 py-6">
-
-            @livewire('trees.tree-characteristic-form', ['assessment' => $assessment])
+            @livewire('trees.tree-characteristic-form', ['assessment' => $assessment, 'category' => $category])
         </div>
 
     @endif

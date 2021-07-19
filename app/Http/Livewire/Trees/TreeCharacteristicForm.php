@@ -4,10 +4,13 @@ namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
 use App\Models\Trees\TreeCharacteristic;
+use Illuminate\Support\Collection;
 
 class TreeCharacteristicForm extends Component
 {
-    public $section = 1;
+    public $category;
+    public $currentSection = 0;
+    public $sections = [];
     public $assessment;
     public $treeCharacteristics;
     public $treeForms;
@@ -17,38 +20,50 @@ class TreeCharacteristicForm extends Component
     public $treeAgeClasses;
     public $ageClass;
     public $treeSpecialValues;
-    public $selectedSpecialValues = [];
+    public $specialValues = [];
+    public $selectedValues;
 
-    public function goForward()
+    public function mount()
     {
-        $this->section++;
+        $this->setSections();
     }
 
-    public function goBack()
+    public function setSections()
     {
-        $this->section--;
-    }
-
-
-    public function addCharacteristic()
-    {
-        $this->assessment->characteristics()->attach($this->form);
-        $this->assessment->characteristics()->attach($this->crownClass);
-        $this->assessment->characteristics()->attach($this->ageClass);
-        foreach($this->selectedSpecialValues as $specialValue)
-        {
-            $this->assessment->characteristics()->attach($specialValue);
+        $this->groupCategoryValues();
+        foreach ($this->treeCharacteristics as $key => $section) {
+            array_push($this->sections, $key);
         }
-
-        $this->emitUp('switchStep', 'health');
     }
 
-    public function getCharacteristics()
+    public function groupCategoryValues()
     {
         // the toBase method returns only the data and doesnt create a model
         $characteristics = TreeCharacteristic::toBase()->get();
         // grouped By returns a new keyed value array of collections
         $this->treeCharacteristics = $characteristics->groupBy('type')->all();
+    }
+
+    public function goForward()
+    {
+        $this->currentSection++;
+    }
+
+    public function goBack()
+    {
+        $this->currentSection--;
+    }
+
+
+    public function addCharacteristics()
+    {
+        $this->selectedValues = collect([$this->form, $this->crownClass, $this->ageClass, $this->specialValues]);
+        $this->emitUp('attachValuesAndProcced', 'health', $this->selectedValues);
+    }
+
+    public function getCharacteristics()
+    {
+        $this->groupCategoryValues();
         $this->treeForms = $this->treeCharacteristics['form'];
         $this->treeCrownClasses = $this->treeCharacteristics['crown class'];
         $this->treeAgeClasses = $this->treeCharacteristics['age class'];
