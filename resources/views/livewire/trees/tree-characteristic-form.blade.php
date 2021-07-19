@@ -35,14 +35,14 @@ future to provide information for every option in every section of every categor
                                         <div class=" text-sm md:text-lg font-bold text-gray-200 text-left">
                                             <div class="grid grid-cols-2 gap-2 relative">
 
-                                                @foreach ($treeForms as $key => $form)
+                                                @foreach ($treeForms as $formKey => $form)
 
                                                     <div class="col-span-2 my-1">
                                                         <input wire:model.lazy="form" name="{{ $form->type }}"
                                                             type="radio" value="{{ $form->id }}"
-                                                            id="option{{ $key }}"
+                                                            id="option{{ $formKey }}"
                                                             class="form-radio text-emerald-500" />
-                                                        <label for="option{{ $key }}"
+                                                        <label for="option{{ $formKey }}"
                                                             class="ml-2">{{ $form->name }}</label>
                                                     </div>
                                                 @endforeach
@@ -137,7 +137,7 @@ future to provide information for every option in every section of every categor
                                         </div>
                                         <div class=" text-sm md:text-lg font-bold text-gray-200 text-left">
                                             <div class="grid grid-cols-2 gap-2 relative">
-                                                @foreach ($treeSpecialValues as $key => $specialValue)
+                                                @foreach ($treeSpecialValues as $specialValue)
                                                     <div class="col-span-2 my-1">
                                                         <input type="checkbox" wire:model="selectedSpecialValues"
                                                             value="{{ $specialValue->id }}"

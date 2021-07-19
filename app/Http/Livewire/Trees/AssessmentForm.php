@@ -22,7 +22,7 @@ class AssessmentForm extends Component
 
     public function switchStep($category)
     {
-        session()->flash('success', 'The Tree\'s'.ucwords($this->category).'were successfully added to the Hazard Assessment');
+        session()->flash('success', 'The Tree\'s '.ucwords($this->category).' were successfully added to the Hazard Assessment');
         $this->category = $category;
     }
 

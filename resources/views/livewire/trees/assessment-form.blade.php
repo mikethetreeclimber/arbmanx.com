@@ -1,13 +1,27 @@
 <div>
     @if ($category === 'tree_species')
         <div class="px-4 py-6">
+            @if (session()->has('success'))
+                <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+                    <p class="font-bold">
+                        {{ session('success') }}
+                    </p>
+                </div>
+            @endif
             <livewire:trees.tree-species-select />
         </div>
     @endif
 
     @if ($category === 'height_dbh')
+        @if (session()->has('success'))
+            <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+                <p class="font-bold">
+                    {{ session('success') }}
+                </p>
+            </div>
+        @endif
         <div class="max-w-3xl w-full mx-auto z-10">
-            <div class="flex flex-col">
+            <div class="flex ">
                 <div class="bg-gray-900 border border-gray-900 shadow-lg  rounded-3xl p-4 m-4">
                     <div class="flex-none sm:flex">
                         <div class="flex-auto sm:ml-5 justify-evenly">
@@ -39,6 +53,13 @@
 
     @if ($category === 'characteristics')
         <div class="px-4 py-6">
+            @if (session()->has('success'))
+                <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+                    <p class="font-bold">
+                        {{ session('success') }}
+                    </p>
+                </div>
+            @endif
 
             @livewire('trees.tree-characteristic-form', ['assessment' => $assessment])
         </div>
@@ -47,6 +68,13 @@
 
     @if ($category === 'health')
         <div class="px-4 py-6 text-3xl text-red-500">
+            @if (session()->has('success'))
+                <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+                    <p class="font-bold">
+                        {{ session('success') }}
+                    </p>
+                </div>
+            @endif
             This is The health form
         </div>
     @endif

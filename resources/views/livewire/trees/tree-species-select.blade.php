@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4 sm:px-8 max-w-3xl font-source">
+<div class="container w-full mx-auto px-4 sm:px-8 max-w-3xl font-source">
     <div class="">
         <div class="flex flex-row mb-1 sm:mb-0 justify-center w-full">
             <div class="w-1/2">
@@ -8,13 +8,13 @@
         <div class="flex items-center justify-center">
             <div class="col-span-12">
                 <div class="overflow-auto lg:overflow-visible ">
-                    <table class="table text-amber-400 border-separate space-y-6 text-2xl">
+                    <table class="table text-amber-400 border-separate md:space-y-6 text-2xl">
                         <thead class="bg-gray-800 text-amber-300">
                             <tr>
                                 <th class="p-3">Common Name</th>
                                 <th class="p-3 text-left">Scientific Name</th>
-                                <th class="p-3 text-left">Height at Maturatiy</th>
-                                <th class="p-3 text-left">Growth Rate</th>
+                                <th class="hidden md:block p-3 text-left">Height at Maturatiy</th>
+                                <th class="hidden md:block p-3 text-left">Growth Rate</th>
                                 <th class="p-3 text-left"></th>
                             </tr>
                         </thead>
@@ -32,15 +32,16 @@
                                         <div class="">{{ $tree->genus_name }}</div>
                                         <div class="">{{ $tree->species_name }}</div>
                                     </td>
-                                    <td class="p-3 font-bold">
+                                    <td class="hidden md:block p-3 font-bold">
                                         {{ $tree->height_at_maturity }}
                                     </td>
-                                    <td class="p-3">
+                                    <td class="hidden md:block p-3">
                                         <span class=" text-gray-50 rounded-md px-2">{{ $tree->growth_rate }}</span>
                                     </td>
                                     <td class="p-3 ">
                                         <button wire:click="$emitUp('treeSpeciesAdded', {{ $tree->id }})"
-                                            type="button" class="text-indigo-600 hover:text-indigo-900">
+                                            type="button"
+                                            class="px-2 py-2 border border-lime-500 rounded-md text-amber-600 hover:text-amber-900">
                                             Select
                                         </button>
                                     </td>
