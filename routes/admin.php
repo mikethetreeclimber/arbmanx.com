@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\Trees\Assessment;
+use App\Http\Livewire\Trees\AssessmentForm;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/customers', function () {
@@ -9,5 +9,5 @@ Route::get('/customers', function () {
 
 
 Route::group(['middleware'=> 'auth'], function(){
-    Route::get('/trees/assessment', Assessment::class);
+    Route::get('/trees/assessment', AssessmentForm::class);
 });

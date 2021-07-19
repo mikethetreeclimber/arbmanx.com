@@ -57,7 +57,7 @@
                     </table>
                 </div>
 
-                {!! $trees->links() !!}
+
 
             </div>
         </div>
