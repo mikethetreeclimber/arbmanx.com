@@ -141,10 +141,10 @@ future to provide information for every option in every section of every categor
                                                     <div class="col-span-2 my-1">
                                                         <input type="checkbox" wire:model="selectedSpecialValues"
                                                             value="{{ $specialValue->id }}"
-                                                            name="{{ $specialValue->type }}{{ $key }}"
-                                                            id="option{{ $key }}"
+                                                            name="{{ $specialValue->type }}{{ $specialValue->id }}"
+                                                            id="option{{ $specialValue->id }}"
                                                             class="form-radio text-emerald-500" />
-                                                        <label for="option{{ $key }}"
+                                                        <label for="option{{ $specialValue->id }}"
                                                             class="ml-2">{{ $specialValue->name }}</label>
                                                     </div>
                                                 @endforeach
