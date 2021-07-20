@@ -9,5 +9,5 @@ Route::get('/customers', function () {
 
 
 Route::group(['middleware'=> 'auth'], function(){
-    Route::get('/trees/assessment', AssessmentForm::class);
+    Route::get('/trees/assessment', AssessmentForm::class)->name('assessment-form');
 });

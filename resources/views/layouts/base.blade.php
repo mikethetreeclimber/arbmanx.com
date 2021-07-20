@@ -28,7 +28,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class="font-lobster">
+<body class=" font-raleway">
     {{-- <img src="{{ asset('storage/img/lone_tree.jpg') }}" class="filter blur absolute h-full w-full object-cover" />
     <div class="inset-0 bg-gradient-to-b from-lime-900 to-gray-900 opacity-80 absolute">
     </div> --}}

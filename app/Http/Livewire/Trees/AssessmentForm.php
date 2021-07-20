@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Trees\Tree;
 use App\Models\Trees\AssessedTree;
 use App\Models\Trees\Assessment;
+use Error;
+use Exception;
 
 class AssessmentForm extends Component
 {
@@ -18,12 +20,28 @@ class AssessmentForm extends Component
     public $height;
     public $spread;
     public $numberOfTrunks;
-    protected $listeners = ['treeSpeciesAdded', 'switchStep'];
+    protected $listeners = ['treeSpeciesAdded', 'attachValuesAndProcced'];
 
-    public function switchStep($category)
+    public function attachValuesAndProcced($category, $currentCategorySelectedIds)
     {
-        session()->flash('success', 'The Tree\'s'.ucwords($this->category).'were successfully added to the Hazard Assessment');
-        $this->category = $category;
+        try {
+            collect($currentCategorySelectedIds)
+            ->flatten()
+            ->map(function ($currentCategorySelectedIds) {
+            $this->assessment->{$this->category}()->attach($currentCategorySelectedIds);
+            });
+
+            session()->flash('success', 'The Tree\'s '.ucwords($this->category).' were successfully added to the Hazard Assessment');
+            $this->category = $category;
+        }
+        catch (Exception $e) {
+            return session()->flash('error', $e->getMessage());
+        }
+        catch (Error $err) {
+            return session()->flash('error', 'Opps something went wrong!');
+        } finally {
+            redirect()->back();
+        }
     }
 
     public function treeSpeciesAdded(Tree $tree)
@@ -35,7 +53,7 @@ class AssessmentForm extends Component
     public function createAssessedTreeDetails()
     {
         $assessedTree = AssessedTree::create([
-                'owner_id' => 5,
+                'owner_id' => 1,
                 'tree_id' =>  $this->tree_id,
                 'dbh' => $this->dbh,
                 'height' => $this->height,
