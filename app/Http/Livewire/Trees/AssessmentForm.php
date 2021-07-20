@@ -53,7 +53,7 @@ class AssessmentForm extends Component
     public function createAssessedTreeDetails()
     {
         $assessedTree = AssessedTree::create([
-                'owner_id' => 5,
+                'owner_id' => 1,
                 'tree_id' =>  $this->tree_id,
                 'dbh' => $this->dbh,
                 'height' => $this->height,
