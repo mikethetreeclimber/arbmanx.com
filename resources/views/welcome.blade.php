@@ -1,176 +1,86 @@
 <x-app-layout>
 
 
-    <div class="relative h-full">
-
-        <header class="text-gray-600 body-font">
-            <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-                <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
-                        stroke-linejoin="round" stroke-width="2"
-                        class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full" viewBox="0 0 24 24">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-                    </svg>
-                    <span class="ml-3 text-xl">Tailblocks</span>
-                </a>
-                <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                    <a class="mr-5 hover:text-gray-900">First Link</a>
-                    <a class="mr-5 hover:text-gray-900">Second Link</a>
-                    <a class="mr-5 hover:text-gray-900">Third Link</a>
-                    <a class="mr-5 hover:text-gray-900">Fourth Link</a>
-                </nav>
-                <a href="{{ route('assessment-form') }}"
-                    class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Button
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="w-4 h-4 ml-1" viewBox="0 0 24 24">
-                        <path d="M5 12h14M12 5l7 7-7 7"></path>
-                    </svg>
+    <main class="dark:bg-gray-800 font-mono bg-white relative overflow-hidden h-screen">
+        <div class="hidden md:block absolute -bottom-32 -left-32 w-96 h-96">
+            <div class="absolute text-extrabold text-xl right-12 z-20 text-start top-1/4">
+                <span class="text-7xl">
+                    🎨
+                </span>
+                <p>
+                    Got a project ?
+                </p>
+                <a href="#" class="underline">
+                    Let&#x27;s talk
                 </a>
             </div>
-        </header>
-
-        <header class="text-gray-600 body-font">
-            <div class="container w-full mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-
-            </div>
-        </header>
-
-
-        <div class="container w-4/5 flex flex-col mx-auto pt-8">
-            <div class="flex flex-wrap -m-4">
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-emerald-800 bg-opacity-40 shadow-xl  p-8 flex-col">
-                        <div class="flex items-center mb-3">
-                            <div
-                                class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-900 text-amber-400 flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                </svg>
-                            </div>
-                            <h2 class="text-amber-400 text-2xl title-font">The Arborist</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="leading-relaxed text-orange-400 font-semibold font-source text-xl">Blue bottle
-                                crucifix vinyl
-                                post-ironic four
-                                dollar toast
-                                vegan
-                                taxidermy. Gastropub indxgo juice poutine.</p>
-                            <a class="mt-3 text-amber-500 inline-flex items-center text-lg">Learn More
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-emerald-800 bg-opacity-40 shadow-xl p-8 flex-col">
-                        <div class="flex items-center mb-3">
-                            <div
-                                class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-900 text-amber-400 flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
-                            </div>
-                            <h2 class="text-amber-400 text-2xl title-font">The Climber</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="leading-relaxed text-orange-400 font-source font-semibold text-xl">Blue bottle
-                                crucifix vinyl
-                                post-ironic four dollar toast
-                                vegan
-                                taxidermy. Gastropub indxgo juice poutine.</p>
-                            <a class="mt-3 text-amber-400 text-lg inline-flex items-center">Learn More
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-emerald-800 bg-opacity-40 shadow-xl p-8 flex-col">
-                        <div class="flex items-center mb-3">
-                            <div
-                                class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-emerald-900 text-amber-400 flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                    <circle cx="6" cy="6" r="3"></circle>
-                                    <circle cx="6" cy="18" r="3"></circle>
-                                    <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                                </svg>
-                            </div>
-                            <h2 class="text-amber-400 text-2xl title-font">The Programmer</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="leading-relaxed text-orange-400 font-semibold font-source text-xl">Blue bottle
-                                crucifix vinyl
-                                post-ironic four
-                                dollar toast
-                                vegan
-                                taxidermy. Gastropub indxgo juice poutine.</p>
-                            <a class="mt-3 text-amber-500 inline-flex items-center text-lg">Learn More
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <svg viewBox="0 0 200 200" class="absolute w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#FFDBB9"
+                    d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,88.5,-0.9C87,14.6,81.4,29.2,74.1,43.2C66.7,57.2,57.6,70.6,45,78.1C32.4,85.6,16.2,87.1,0.7,85.9C-14.8,84.7,-29.6,80.9,-43.9,74.4C-58.3,67.9,-72,58.7,-79.8,45.9C-87.7,33,-89.5,16.5,-88.9,0.3C-88.4,-15.9,-85.4,-31.7,-78.1,-45.4C-70.8,-59.1,-59.1,-70.6,-45.3,-77.9C-31.6,-85.3,-15.8,-88.5,-0.3,-88.1C15.3,-87.6,30.5,-83.5,44.7,-76.4Z"
+                    transform="translate(100 100)">
+                </path>
+            </svg>
         </div>
-    </div>
-    <footer class="text-amber-400 bg-emerald-900 bg-opacity-40 body-font absolute w-full bottom-0">
-        <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-            <a class="flex title-font font-medium items-center md:justify-start justify-center text-amber-400">
-                <span class="ml-3 text-xl">Arbman X</span>
-            </a>
-            <p class="text-sm text-orange-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">©
-                2021
-                Tree Aware —
-                <a href="https://twitter.com/knyttneve" class="text-orange-500 ml-1" target="_blank"
-                    rel="noopener noreferrer">@arbmanX</a>
-            </p>
-            <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-                <a class="text-amber-400">
-                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        class="w-5 h-5" viewBox="0 0 24 24">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-                    </svg>
-                </a>
-                <a class="ml-3 text-amber-400">
-                    <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        class="w-5 h-5" viewBox="0 0 24 24">
+        <header class="h-24 sm:h-32 flex items-center z-30 w-full">
+            <div class="container mx-auto px-6 flex items-center justify-between">
+                <div class="uppercase text-gray-800 dark:text-white font-black text-3xl flex items-center">
+                    <svg width="25" height="25" viewBox="0 0 1792 1792" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
                         <path
-                            d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z">
+                            d="M1664 1504v-768q-32 36-69 66-268 206-426 338-51 43-83 67t-86.5 48.5-102.5 24.5h-2q-48 0-102.5-24.5t-86.5-48.5-83-67q-158-132-426-338-37-30-69-66v768q0 13 9.5 22.5t22.5 9.5h1472q13 0 22.5-9.5t9.5-22.5zm0-1051v-24.5l-.5-13-3-12.5-5.5-9-9-7.5-14-2.5h-1472q-13 0-22.5 9.5t-9.5 22.5q0 168 147 284 193 152 401 317 6 5 35 29.5t46 37.5 44.5 31.5 50.5 27.5 43 9h2q20 0 43-9t50.5-27.5 44.5-31.5 46-37.5 35-29.5q208-165 401-317 54-43 100.5-115.5t46.5-131.5zm128-37v1088q0 66-47 113t-113 47h-1472q-66 0-113-47t-47-113v-1088q0-66 47-113t113-47h1472q66 0 113 47t47 113z">
                         </path>
                     </svg>
-                </a>
-                <a class="ml-3 text-amber-400">
-                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-                    </svg>
-                </a>
-                <a class="ml-3 text-amber-400">
-                    <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                        stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-                        <path stroke="none"
-                            d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z">
-                        </path>
-                        <circle cx="4" cy="4" r="2" stroke="none"></circle>
-                    </svg>
-                </a>
-            </span>
+                    <span class="text-xs ml-3 mt-1">
+                        Arbmanx@Gmail.COM
+                    </span>
+                </div>
+                <div class="flex items-center">
+                    <nav class="font-sen text-gray-800 dark:text-white uppercase text-lg lg:flex items-center hidden">
+                        <a href="#" class="py-2 px-6 flex hover:text-black">
+                            Works
+                        </a>
+                        <a href="#" class="py-2 px-6 flex hover:text-black">
+                            Resume
+                        </a>
+                        <a href="#" class="py-2 px-6 flex hover:text-black">
+                            Services
+                        </a>
+                        <a href="#" class="py-2 px-6 flex hover:text-black">
+                            Contact
+                        </a>
+                    </nav>
+                    <button class="lg:hidden flex flex-col ml-4">
+                        <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                        </span>
+                        <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                        </span>
+                        <span class="w-6 h-1 bg-gray-800 dark:bg-white mb-1">
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <div class="flex relative z-20 items-center">
+            <div class="container mx-auto px-6 flex flex-col justify-between items-center relative py-4">
+                <div class="flex flex-col">
+                    {{-- <img src="/images/person/11.webp" class="rounded-full w-28 mx-auto" />
+                    <p class="text-3xl my-6 text-center dark:text-white">
+                        Hi, I&#x27;m Arbman 🤘
+                    </p>
+                    <h2
+                        class="max-w-3xl text-5xl md:text-6xl font-bold mx-auto dark:text-white text-gray-800 text-center py-2">
+                        Building digital products, brands, and experiences.
+                    </h2> --}}
+                    <div class="flex items-center justify-center mt-4">
+                        <a href="{{ route('assessment-form') }}"
+                            class="uppercase py-2 my-2 px-4 md:mt-16 bg-transparent bg-lime-700 text-amber-400 border-2 border-gray-800  dark:text-white hover:bg-gray-800 hover:text-white text-md">
+                            Click Here Tree Assessment
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </main>
+
 
 </x-app-layout>

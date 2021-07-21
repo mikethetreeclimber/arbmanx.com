@@ -18,6 +18,10 @@
                 <h1 class="my-6 text-6xl font-lobster">
                     Log In
                 </h1>
+                <p class="text-3xl">
+                    username = arbmanx@arbmanx.com
+                    password = tree0420
+                </p>
                 @if (Route::has('register'))
                     <p class="mt-2 text-base text-center text-gray-600 leading-5 max-w">
                         <a href="{{ route('register') }}"
