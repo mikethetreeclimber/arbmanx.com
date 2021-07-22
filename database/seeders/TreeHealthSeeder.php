@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Trees\TreeHealth;
+use App\Models\Tree\TreeHealth;
 use Illuminate\Database\Seeder;
 
 class TreeHealthSeeder extends Seeder
@@ -17,193 +17,193 @@ class TreeHealthSeeder extends Seeder
         $treeHealth = [
             [
                 'id'    => 1,
-                'type'  => 'foliage color',
-                'name'  => 'normal'
+                'section'  => 'foliage color',
+                'value'  => 'normal'
             ],
             [
                 'id'    => 2,
-                'type'  => 'foliage color',
-                'name'  => 'chlorotic'
+                'section'  => 'foliage color',
+                'value'  => 'chlorotic'
             ],
             [
                 'id'    => 3,
-                'type'  => 'foliage color',
-                'name'  => 'necrotic'
+                'section'  => 'foliage color',
+                'value'  => 'necrotic'
             ],
             [
                 'id'    => 4,
-                'type'  => 'foliage density',
-                'name'  => 'normal'
+                'section'  => 'foliage density',
+                'value'  => 'normal'
             ],
             [
                 'id'    => 5,
-                'type'  => 'foliage density',
-                'name'  => 'sparse'
+                'section'  => 'foliage density',
+                'value'  => 'sparse'
             ],
             [
                 'id'    => 6,
-                'type'  => 'leaf size',
-                'name'  => 'normal'
+                'section'  => 'leaf size',
+                'value'  => 'normal'
             ],
             [
                 'id'    => 7,
-                'type'  => 'leaf size',
-                'name'  => 'small'
+                'section'  => 'leaf size',
+                'value'  => 'small'
             ],
             [
                 'id'    => 8,
-                'type'  => 'annual shoot growth',
-                'name'  => 'excellent'
+                'section'  => 'annual shoot growth',
+                'value'  => 'excellent'
             ],
             [
                 'id'    => 9,
-                'type'  => 'annual shoot growth',
-                'name'  => 'average'
+                'section'  => 'annual shoot growth',
+                'value'  => 'average'
             ],
             [
                 'id'    => 10,
-                'type'  => 'annual shoot growth',
-                'name'  => 'poor'
+                'section'  => 'annual shoot growth',
+                'value'  => 'poor'
             ],
             [
                 'id'    => 11,
-                'type'  => 'woundwood development',
-                'name'  => 'excellent'
+                'section'  => 'woundwood development',
+                'value'  => 'excellent'
             ],
             [
                 'id'    => 12,
-                'type'  => 'woundwood development',
-                'name'  => 'average'
+                'section'  => 'woundwood development',
+                'value'  => 'average'
             ],
             [
                 'id'    => 13,
-                'type'  => 'woundwood development',
-                'name'  => 'poor'
+                'section'  => 'woundwood development',
+                'value'  => 'poor'
             ],
             [
                 'id'    => 14,
-                'type'  => 'woundwood development',
-                'name'  => 'none'
+                'section'  => 'woundwood development',
+                'value'  => 'none'
             ],
             [
                 'id'    => 15,
-                'type'  => 'vigor class',
-                'name'  => 'excellent'
+                'section'  => 'vigor class',
+                'value'  => 'excellent'
             ],
             [
                 'id'    => 16,
-                'type'  => 'vigor class',
-                'name'  => 'average'
+                'section'  => 'vigor class',
+                'value'  => 'average'
             ],
             [
                 'id'    => 17,
-                'type'  => 'vigor class',
-                'name'  => 'fair'
+                'section'  => 'vigor class',
+                'value'  => 'fair'
             ],
             [
                 'id'    => 18,
-                'type'  => 'vigor class',
-                'name'  => 'poor'
+                'section'  => 'vigor class',
+                'value'  => 'poor'
             ],
             [
                 'id'    => 19,
-                'type'  => 'growth obstruction',
-                'name'  => 'stakes'
+                'section'  => 'growth obstruction',
+                'value'  => 'stakes'
             ],
             [
                 'id'    => 20,
-                'type'  => 'growth obstruction',
-                'name'  => 'wires/ties'
+                'section'  => 'growth obstruction',
+                'value'  => 'wires/ties'
             ],
             [
                 'id'    => 21,
-                'type'  => 'growth obstruction',
-                'name'  => 'signs'
+                'section'  => 'growth obstruction',
+                'value'  => 'signs'
             ],
             [
                 'id'    => 22,
-                'type'  => 'growth obstruction',
-                'name'  => 'cables'
+                'section'  => 'growth obstruction',
+                'value'  => 'cables'
             ],
             [
                 'id'    => 23,
-                'type'  => 'growth obstruction',
-                'name'  => 'curb/pavement'
+                'section'  => 'growth obstruction',
+                'value'  => 'curb/pavement'
             ],
             [
                 'id'    => 24,
-                'type'  => 'growth obstruction',
-                'name'  => 'guards'
+                'section'  => 'growth obstruction',
+                'value'  => 'guards'
             ],
             [
                 'id'    => 25,
-                'type'  => 'growth obstruction',
-                'name'  => 'other'
+                'section'  => 'growth obstruction',
+                'value'  => 'other'
             ],
             [
                 'id'    => 26,
-                'type'  => 'epicormics',
-                'name'  => 'true'
+                'section'  => 'epicormics',
+                'value'  => 'true'
             ],
             [
                 'id'    => 27,
-                'type'  => 'twig dieback',
-                'name'  => 'true'
+                'section'  => 'twig dieback',
+                'value'  => 'true'
             ],
             [
                 'id'    => 28,
-                'type'  => 'live crown ratio',
-                'name'  => '0-10%'
+                'section'  => 'live crown ratio',
+                'value'  => '0-10%'
             ],
             [
                 'id'    => 29,
-                'type'  => 'live crown ratio',
-                'name'  => '10-20%'
+                'section'  => 'live crown ratio',
+                'value'  => '10-20%'
             ],
             [
                 'id'    => 30,
-                'type'  => 'live crown ratio',
-                'name'  => '20-30%'
+                'section'  => 'live crown ratio',
+                'value'  => '20-30%'
             ],
             [
                 'id'    => 31,
-                'type'  => 'live crown ratio',
-                'name'  => '30-40%'
+                'section'  => 'live crown ratio',
+                'value'  => '30-40%'
             ],
             [
                 'id'    => 32,
-                'type'  => 'live crown ratio',
-                'name'  => '40%-50%'
+                'section'  => 'live crown ratio',
+                'value'  => '40%-50%'
             ],
             [
                 'id'    => 33,
-                'type'  => 'live crown ratio',
-                'name'  => '50-60%'
+                'section'  => 'live crown ratio',
+                'value'  => '50-60%'
             ],
             [
                 'id'    => 34,
-                'type'  => 'live crown ratio',
-                'name'  => '60-70%'
+                'section'  => 'live crown ratio',
+                'value'  => '60-70%'
             ],
             [
                 'id'    => 35,
-                'type'  => 'live crown ratio',
-                'name'  => '70-80%'
+                'section'  => 'live crown ratio',
+                'value'  => '70-80%'
             ],
             [
                 'id'    => 36,
-                'type'  => 'live crown ratio',
-                'name'  => '80-90%'
+                'section'  => 'live crown ratio',
+                'value'  => '80-90%'
             ],
             [
                 'id'    => 37,
-                'type'  => 'live crown ratio',
-                'name'  => '90-99%'
+                'section'  => 'live crown ratio',
+                'value'  => '90-99%'
             ],
             [
                 'id'    => 38,
-                'type'  => 'live crown ratio',
-                'name'  => '100%'
+                'section'  => 'live crown ratio',
+                'value'  => '100%'
             ],
         ];
         TreeHealth::insert($treeHealth);

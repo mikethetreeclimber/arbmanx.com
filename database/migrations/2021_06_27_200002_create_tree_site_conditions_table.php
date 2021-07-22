@@ -11,8 +11,8 @@ class CreateTreeSiteConditionsTable extends Migration
     {
         Schema::create('tree_site_conditions', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 60);
-            $table->string('name', 60);
+            $table->string('section', 60);
+            $table->string('value', 60);
         });
         $seeder = new TreeSiteConditionsSeeder;
         $seeder->run();

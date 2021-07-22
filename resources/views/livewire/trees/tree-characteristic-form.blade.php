@@ -3,7 +3,6 @@
 future to provide information for every option in every section of every category
 // COMPONENTS: Extract into compontents using the atomic design pattern
 // REUSABLE: Make the form dynamic using the Assessment Class and corresponding category class to insert the values --}}
-
 <div>
     <form wire:submit.prevent="add{{ ucwords($category) }}">
 
@@ -24,12 +23,12 @@ future to provide information for every option in every section of every categor
 
                 <div>
                     @if ($currentSection === 0)
-                        @foreach ($treeForms as $formKey => $form)
+                        @foreach ($treeForms as $key => $form)
                             <div class="col-span-2 my-1">
-                                <input wire:model.lazy="form" name="{{ $form->type }}" type="radio"
-                                    value="{{ $form->id }}" id="option{{ $formKey }}"
+                                <input wire:model.lazy="form" name="{{ $form->section }}" type="radio"
+                                    value="{{ $form->id }}" id="option{{ $key }}"
                                     class="form-radio text-emerald-500" />
-                                <label for="option{{ $formKey }}" class="ml-2">{{ $form->name }}</label>
+                                <label for="option{{ $key }}" class="ml-2">{{ $form->value }}</label>
                             </div>
                         @endforeach
                     @endif
@@ -37,9 +36,9 @@ future to provide information for every option in every section of every categor
                         @foreach ($treeCrownClasses as $key => $crownClass)
                             <div class="col-span-2 my-1">
                                 <input type="radio" wire:model.lazy="crownClass" value="{{ $crownClass->id }}"
-                                    name="{{ $crownClass->type }}" id="option{{ $key }}"
+                                    name="{{ $crownClass->section }}" id="option{{ $key }}"
                                     class="form-radio text-emerald-500" />
-                                <label for="option{{ $key }}" class="ml-2">{{ $crownClass->name }}</label>
+                                <label for="option{{ $key }}" class="ml-2">{{ $crownClass->value }}</label>
                             </div>
                         @endforeach
                     @endif
@@ -47,9 +46,9 @@ future to provide information for every option in every section of every categor
                         @foreach ($treeAgeClasses as $key => $ageClass)
                             <div class="col-span-2 my-1">
                                 <input type="radio" wire:model.lazy="ageClass" value="{{ $ageClass->id }}"
-                                    name="{{ $ageClass->type }}" id="option{{ $key }}"
+                                    name="{{ $ageClass->section }}" id="option{{ $key }}"
                                     class="form-radio text-emerald-500" />
-                                <label for="option{{ $key }}" class="ml-2">{{ $ageClass->name }}</label>
+                                <label for="option{{ $key }}" class="ml-2">{{ $ageClass->value }}</label>
                             </div>
                         @endforeach
                     @endif
@@ -58,10 +57,10 @@ future to provide information for every option in every section of every categor
                             <div class="col-span-2 my-1">
                                 <input type="checkbox" wire:model.lazy="specialValues"
                                     value="{{ $specialValue->id }}"
-                                    name="{{ $specialValue->type }}{{ $specialValue->id }}"
+                                    name="{{ $specialValue->section }}{{ $specialValue->id }}"
                                     id="option{{ $specialValue->id }}" class="form-radio text-emerald-500" />
                                 <label for="option{{ $specialValue->id }}"
-                                    class="ml-2">{{ $specialValue->name }}</label>
+                                    class="ml-2">{{ $specialValue->value }}</label>
                             </div>
                         @endforeach
                     @endif

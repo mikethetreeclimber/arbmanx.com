@@ -11,8 +11,8 @@ class CreateTreeCharacteristicsTable extends Migration
     {
         Schema::create('tree_characteristics', function (Blueprint $table) {
             $table->id();
-            $table->string('type', 60);
-            $table->string('name', 60);
+            $table->string('section', 60);
+            $table->string('value', 60);
         });
         $seeder = new TreeCharacteristicsSeeder;
         $seeder->run();

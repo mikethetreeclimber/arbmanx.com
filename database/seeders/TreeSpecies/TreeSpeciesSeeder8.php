@@ -2,7 +2,7 @@
 
 namespace Database\Seeders\TreeSpecies;
 
-use App\Models\Trees\Tree;
+use App\Models\Tree\Tree;
 use Illuminate\Database\Seeder;
 
 class TreeSpeciesSeeder8 extends Seeder

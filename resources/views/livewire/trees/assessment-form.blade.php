@@ -13,10 +13,10 @@
             </p>
         </div>
     @endif
-    @if ($category === 'tree_species')
-        <div class="px-4 py-6">
 
-            <livewire:trees.tree-species-select />
+    @if ($category === 'tree_details')
+        <div class="px-4 py-6">
+            @livewire('trees.tree-species-select', ['assessment' => $assessment, 'category' => $category])
         </div>
     @endif
 
@@ -61,7 +61,7 @@
 
     @if ($category === 'health')
         <div class="px-4 py-6 text-3xl text-red-500">
-            This is The health form
+            @livewire('trees.tree-health-form', ['assessment' => $assessment, 'category' => $category])
         </div>
     @endif
 </div>

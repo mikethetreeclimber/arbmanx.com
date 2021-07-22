@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Trees\TreeCharacteristic;
+use App\Models\Tree\TreeCharacteristic;
 use Illuminate\Database\Seeder;
 
 class TreeCharacteristicsSeeder extends Seeder
@@ -12,113 +12,113 @@ class TreeCharacteristicsSeeder extends Seeder
         $treeCharacteristics = [
             [
                 'id' => 1,
-                'type' => 'form',
-                'name' => 'generally symmetric'
+                'section' => 'form',
+                'value' => 'generally symmetric'
             ],
             [
                 'id' => 2,
-                'type' => 'form',
-                'name' => 'minor asymmetry'
+                'section' => 'form',
+                'value' => 'minor asymmetry'
             ],
             [
                 'id' => 3,
-                'type' => 'form',
-                'name' => 'major asymmetry'
+                'section' => 'form',
+                'value' => 'major asymmetry'
             ],
             [
                 'id' => 4,
-                'type' => 'form',
-                'name' => 'stump sprout'
+                'section' => 'form',
+                'value' => 'stump sprout'
             ],
             [
                 'id' => 5,
-                'type' => 'form',
-                'name' => 'stag headed'
+                'section' => 'form',
+                'value' => 'stag headed'
             ],
             [
                 'id' => 6,
-                'type' => 'crown class',
-                'name' => 'dominant'
+                'section' => 'crown class',
+                'value' => 'dominant'
             ],
             [
                 'id' => 7,
-                'type' => 'crown class',
-                'name' => 'co-dominant'
+                'section' => 'crown class',
+                'value' => 'co-dominant'
             ],
             [
                 'id' => 8,
-                'type' => 'crown class',
-                'name' => 'intermediate'
+                'section' => 'crown class',
+                'value' => 'intermediate'
             ],
             [
                 'id' => 9,
-                'type' => 'crown class',
-                'name' => 'suppressed'
+                'section' => 'crown class',
+                'value' => 'suppressed'
             ],
             [
                 'id' => 10,
-                'type' => 'age class',
-                'name' => 'young'
+                'section' => 'age class',
+                'value' => 'young'
             ],
             [
                 'id' => 11,
-                'type' => 'age class',
-                'name' => 'semi-mature'
+                'section' => 'age class',
+                'value' => 'semi-mature'
             ],
             [
                 'id' => 12,
-                'type' => 'age class',
-                'name' => 'mature'
+                'section' => 'age class',
+                'value' => 'mature'
             ],
             [
                 'id' => 13,
-                'type' => 'age class',
-                'name' => 'over-mature/senescent'
+                'section' => 'age class',
+                'value' => 'over-mature/senescent'
             ],
             [
                 'id' => 14,
-                'type' => 'special value',
-                'name' => 'specimen'
+                'section' => 'special value',
+                'value' => 'specimen'
             ],
             [
                 'id' => 15,
-                'type' => 'special value',
-                'name' => 'historic'
+                'section' => 'special value',
+                'value' => 'historic'
             ],
             [
                 'id' => 16,
-                'type' => 'special value',
-                'name' => 'wildlife'
+                'section' => 'special value',
+                'value' => 'wildlife'
             ],
             [
                 'id' => 17,
-                'type' => 'special value',
-                'name' => 'unusual'
+                'section' => 'special value',
+                'value' => 'unusual'
             ],
             [
                 'id' => 18,
-                'type' => 'special value',
-                'name' => 'street tree'
+                'section' => 'special value',
+                'value' => 'street tree'
             ],
             [
                 'id' => 19,
-                'type' => 'special value',
-                'name' => 'screen'
+                'section' => 'special value',
+                'value' => 'screen'
             ],
             [
                 'id' => 20,
-                'type' => 'special value',
-                'name' => 'shade'
+                'section' => 'special value',
+                'value' => 'shade'
             ],
             [
                 'id' => 21,
-                'type' => 'special value',
-                'name' => 'indigenous'
+                'section' => 'special value',
+                'value' => 'indigenous'
             ],
             [
                 'id' => 22,
-                'type' => 'special value',
-                'name' => 'protected by gov. agency'
+                'section' => 'special value',
+                'value' => 'protected by gov. agency'
             ]
         ];
         TreeCharacteristic::insert($treeCharacteristics);

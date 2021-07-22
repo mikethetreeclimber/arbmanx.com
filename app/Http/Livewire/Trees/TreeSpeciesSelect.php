@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
-use App\Models\Trees\Tree;
+use App\Models\Tree\Tree;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
 

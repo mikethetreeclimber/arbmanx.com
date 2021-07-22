@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Trees\Tree;
+use App\Models\Tree\Tree;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 

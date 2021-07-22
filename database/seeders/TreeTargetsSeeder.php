@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Trees\TreeTarget;
+use App\Models\Tree\TreeTarget;
 use Illuminate\Database\Seeder;
 
 class TreeTargetsSeeder extends Seeder
@@ -17,93 +17,93 @@ class TreeTargetsSeeder extends Seeder
         $treeTargets = [
             [
                 'id' => 1,
-                'type' => 'use under tree',
-                'name' => 'building'
+                'section' => 'use under tree',
+                'value' => 'building'
             ],
             [
                 'id' => 2,
-                'type' => 'use under tree',
-                'name' => 'parking'
+                'section' => 'use under tree',
+                'value' => 'parking'
             ],
             [
                 'id' => 3,
-                'type' => 'use under tree',
-                'name' => 'traffic'
+                'section' => 'use under tree',
+                'value' => 'traffic'
             ],
             [
                 'id' => 4,
-                'type' => 'use under tree',
-                'name' => 'pedestrian'
+                'section' => 'use under tree',
+                'value' => 'pedestrian'
             ],
             [
                 'id' => 5,
-                'type' => 'use under tree',
-                'name' => 'recreation'
+                'section' => 'use under tree',
+                'value' => 'recreation'
             ],
             [
                 'id' => 6,
-                'type' => 'use under tree',
-                'name' => 'landscape'
+                'section' => 'use under tree',
+                'value' => 'landscape'
             ],
             [
                 'id' => 7,
-                'type' => 'use under tree',
-                'name' => 'hardscape'
+                'section' => 'use under tree',
+                'value' => 'hardscape'
             ],
             [
                 'id' => 8,
-                'type' => 'use under tree',
-                'name' => 'small features'
+                'section' => 'use under tree',
+                'value' => 'small features'
             ],
             [
                 'id' => 9,
-                'type' => 'use under tree',
-                'name' => 'utility lines'
+                'section' => 'use under tree',
+                'value' => 'utility lines'
             ],
             [
                 'id' => 10,
-                'type' => 'can target be moved?',
-                'name' => 'true'
+                'section' => 'can target be moved?',
+                'value' => 'true'
             ],
             [
                 'id' => 11,
-                'type' => 'can target be restricted?',
-                'name' => 'true'
+                'section' => 'can target be restricted?',
+                'value' => 'true'
             ],
             [
                 'id' => 12,
-                'type' => 'occupancy rate',
-                'name' => 'rare use'
+                'section' => 'occupancy rate',
+                'value' => 'rare use'
             ],
             [
                 'id' => 13,
-                'type' => 'occupancy rate',
-                'name' => 'occasional use'
+                'section' => 'occupancy rate',
+                'value' => 'occasional use'
             ],
             [
                 'id' => 14,
-                'type' => 'occupancy rate',
-                'name' => 'frequent use'
+                'section' => 'occupancy rate',
+                'value' => 'frequent use'
             ],
             [
                 'id' => 15,
-                'type' => 'occupancy rate',
-                'name' => 'constant use'
+                'section' => 'occupancy rate',
+                'value' => 'constant use'
             ],
             [
                 'id' => 16,
-                'type' => 'target within dripline?',
-                'name' => 'true'
+                'section' => 'target within dripline?',
+                'value' => 'true'
             ],
             [
                 'id' => 17,
-                'type' => 'target within 1x the height of the tree?',
-                'name' => 'true'
+                'section' => 'target within 1x the height of the tree?',
+                'value' => 'true'
             ],
             [
                 'id' => 18,
-                'type' => 'target within 1.5x the height of the tree?',
-                'name' => 'true'
+                'section' => 'target within 1.5x the height of the tree?',
+                'value' => 'true'
             ],
         ];
         TreeTarget::insert($treeTargets);

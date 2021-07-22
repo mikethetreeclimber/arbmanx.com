@@ -3,8 +3,7 @@
 namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
-use App\Models\Trees\TreeCharacteristic;
-use Illuminate\Support\Collection;
+use App\Models\Tree\TreeCharacteristic;
 
 class TreeCharacteristicForm extends Component
 {
@@ -41,7 +40,7 @@ class TreeCharacteristicForm extends Component
         // the toBase method returns only the data and doesnt create a model
         $characteristics = TreeCharacteristic::toBase()->get();
         // grouped By returns a new keyed value array of collections
-        $this->treeCharacteristics = $characteristics->groupBy('type')->all();
+        $this->treeCharacteristics = $characteristics->groupBy('section')->all();
     }
 
     public function goForward()

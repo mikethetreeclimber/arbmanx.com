@@ -1,10 +1,9 @@
-<div class="">
+<div>
     <div class="flex flex-row mb-1 sm:mb-0 justify-center w-full">
         <div class="w-1/2">
             <x-forms.input class="h-12" wire:model="search" type="text" placeholder="Search ..." />
         </div>
     </div>
-
     <div class="container mx-auto px-4 sm:px-8 max-w-4xl">
         <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
             <div class="inline-block min-w-full border border-lime-700  shadow rounded-lg overflow-hidden">

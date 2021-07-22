@@ -3,15 +3,15 @@
 namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
-use App\Models\Trees\Tree;
-use App\Models\Trees\AssessedTree;
-use App\Models\Trees\Assessment;
+use App\Models\Tree\Tree;
+use App\Models\Tree\AssessedTree;
+use App\Models\Tree\Assessment;
 use Error;
 use Exception;
 
 class AssessmentForm extends Component
 {
-    public $category = 'tree_species';
+    public $category;
     public $assessment;
     public $treeDetails;
     public $owner_id;
@@ -21,6 +21,12 @@ class AssessmentForm extends Component
     public $spread;
     public $numberOfTrunks;
     protected $listeners = ['treeSpeciesAdded', 'attachValuesAndProcced'];
+
+    public function mount()
+    {
+        $this->category = 'tree_details';
+        $this->assessment = new Assessment;
+    }
 
     public function attachValuesAndProcced($category, $currentCategorySelectedIds)
     {
