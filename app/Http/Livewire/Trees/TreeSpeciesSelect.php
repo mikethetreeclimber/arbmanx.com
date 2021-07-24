@@ -18,7 +18,7 @@ class TreeSpeciesSelect extends Component
     public function render()
     {
         return view('livewire.trees.tree-species-select', [
-            'trees' => Tree::search($this->search)->paginate(5),
+            'trees' => Tree::search($this->search)->paginate(10),
         ]);
     }
 }

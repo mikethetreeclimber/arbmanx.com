@@ -2,62 +2,88 @@
 
 namespace App\Http\Livewire\Trees;
 
-use Livewire\Component;
-use App\Models\Tree\Tree;
-use App\Models\Tree\AssessedTree;
-use App\Models\Tree\Assessment;
 use Error;
 use Exception;
+use Livewire\Component;
+use App\Models\Tree\Tree;
+use App\Models\Tree\Assessment;
+use App\Models\Tree\AssessedTree;
+use App\Models\Tree\TreeCharacteristic;
+use App\Models\Tree\TreeHealth;
+use App\Models\Tree\TreeSiteCondition;
+use App\Models\Tree\TreeTarget;
 
 class AssessmentForm extends Component
 {
-    public $category;
     public $assessment;
-    public $treeDetails;
-    public $owner_id;
-    public $tree_id;
-    public $dbh;
-    public $height;
-    public $spread;
-    public $numberOfTrunks;
+    public $categories = [];
+    public $currentCategory = 1;
     protected $listeners = ['treeSpeciesAdded', 'attachValuesAndProcced'];
 
     public function mount()
     {
-        $this->category = 'tree_details';
         $this->assessment = new Assessment;
+        $this->getCategories();
     }
 
-    public function attachValuesAndProcced($category, $currentCategorySelectedIds)
+    public function getAssessmentFormValuesProperty()
     {
-        try {
-            collect($currentCategorySelectedIds)
-            ->flatten()
-            ->map(function ($currentCategorySelectedIds) {
-            $this->assessment->{$this->category}()->attach($currentCategorySelectedIds);
-            });
+        return
+            [
+                'tree_details' => [],
+                // 'demensions' => [],
+                'characteristics'   => collect(TreeCharacteristic::toBase()->get())->groupBy('section')->all(),
+                'health'            => collect(TreeHealth::toBase()->get())->groupBy('section')->all(),
+                'site_conditions'   => collect(TreeSiteCondition::toBase()->get())->groupBy('section')->all(),
+                'targets'           => collect(TreeTarget::toBase()->get())->groupBy('section')->all(),
+            ];
 
-            session()->flash('success', 'The Tree\'s '.ucwords($this->category).' were successfully added to the Hazard Assessment');
-            $this->category = $category;
-        }
-        catch (Exception $e) {
-            return session()->flash('error', $e->getMessage());
-        }
-        catch (Error $err) {
-            return session()->flash('error', 'Opps something went wrong!');
-        } finally {
-            redirect()->back();
-        }
+
+    }
+
+    public function getCategories()
+    {
+        $forms = $this->AssessmentFormValues;
+        $categories = [];
+        foreach ($forms as $key => $form) {
+            array_push($categories, [$key => $form]);
+       }
+       $this->categories = $categories;
+    }
+
+
+    public function attachValuesAndProcced($relationship, $sectionsToComplete, $currentCategoryValuesToAttach)
+    {
+        dd($relationship, $sectionsToComplete, $currentCategoryValuesToAttach);
+        $this->currentCategory++;
+        // try {
+        //     collect($currentCategoryValuesToAttach)
+        //     ->flatten()
+        //     ->map(function ($currentCategoryValuesToAttach) use ($relationship) {
+        //     $this->assessment->{$relationship}()->attach($currentCategoryValuesToAttach);
+        //     });
+
+        //     session()->flash('success', 'The Tree\'s '.ucwords($this->category).' were successfully added to the Hazard Assessment');
+        // }
+        // catch (Exception $e) {
+        //     return session()->flash('error', $e->getMessage());
+        // }
+        // catch (Error $err) {
+        //     return session()->flash('error', 'Opps something went wrong!');
+        // } finally {
+        //     redirect()->back();
+        // }
     }
 
     public function treeSpeciesAdded(Tree $tree)
     {
         $this->tree_id = $tree->id;
-        $this->category = 'height_dbh';
+        $this->currentCategory++;
     }
 
     public function createAssessedTreeDetails()
     {
+        // Move to its own controller
         $assessedTree = AssessedTree::create([
                 'owner_id' => 1,
                 'tree_id' =>  $this->tree_id,

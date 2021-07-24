@@ -32,7 +32,7 @@ class Assessment extends Model
         return $this->belongsToMany(TreeHealth::class);
     }
 
-    public function siteConditions()
+    public function site_conditions()
     {
         return $this->belongsToMany(TreeSiteCondition::class);
     }
