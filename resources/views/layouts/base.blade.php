@@ -29,8 +29,11 @@
 </head>
 
 <body>
+    @yield('body')
+    @isset($slot)
 
-    {{ $slot }}
+        {{ $slot }}
+    @endisset
 
 
 
