@@ -28,9 +28,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
-<body class=" font-raleway">
+<body>
 
-    @yield('body')
+    {{ $slot }}
+
 
 
     @livewireScripts

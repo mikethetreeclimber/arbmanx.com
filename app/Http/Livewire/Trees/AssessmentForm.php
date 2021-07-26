@@ -16,14 +16,16 @@ use App\Models\Tree\TreeTarget;
 class AssessmentForm extends Component
 {
     public $assessment;
+    public $title;
     public $categories = [];
-    public $currentCategory = 1;
+    public $currentCategory = 0;
     protected $listeners = ['treeSpeciesAdded', 'attachValuesAndProcced'];
 
     public function mount()
     {
         $this->assessment = new Assessment;
         $this->getCategories();
+        $this->title =  ucwords('No Tree Selelcted Yet');
     }
 
     public function getAssessmentFormValuesProperty()
@@ -31,7 +33,7 @@ class AssessmentForm extends Component
         return
             [
                 'tree_details' => [],
-                // 'demensions' => [],
+                'demensions' => [],
                 'characteristics'   => collect(TreeCharacteristic::toBase()->get())->groupBy('section')->all(),
                 'health'            => collect(TreeHealth::toBase()->get())->groupBy('section')->all(),
                 'site_conditions'   => collect(TreeSiteCondition::toBase()->get())->groupBy('section')->all(),
@@ -52,9 +54,9 @@ class AssessmentForm extends Component
     }
 
 
-    public function attachValuesAndProcced($relationship, $sectionsToComplete, $currentCategoryValuesToAttach)
+    public function attachValuesAndProcced($currentCategoryValuesToAttach, $sectionsToComplete)
     {
-        dd($relationship, $sectionsToComplete, $currentCategoryValuesToAttach);
+        dd($sectionsToComplete, $currentCategoryValuesToAttach);
         $this->currentCategory++;
         // try {
         //     collect($currentCategoryValuesToAttach)
@@ -79,6 +81,7 @@ class AssessmentForm extends Component
     {
         $this->tree_id = $tree->id;
         $this->currentCategory++;
+        $this->title =  ucwords($tree->common_name);
     }
 
     public function createAssessedTreeDetails()

@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 Route::view('/', 'welcome')->name('home');
 
+Route::view('/design', 'design')->name('design');
+
 // Route::get('/test', function(){
 //     $searchTerm = 'red';
 //     $collection = Tree::where('common_name', 'LIKE',  '%'.' '.$searchTerm.'%')->get(['id', 'common_name']);

@@ -1,25 +1,21 @@
-@extends('layouts.base')
-
-@section('body')
-
-    {{-- //TODO: make background work for scrolling of overflow. **CSS ideas on bottom --}}
-    <img src="{{ asset('storage/img/lone_tree.jpg') }}"
-        class="bg-scroll filter blur absolute h-full w-full object-cover" />
-    <div class="bg-scroll inset-0 bg-gradient-to-r from-lime-900 to-gray-900 opacity-80 absolute">
+<x-base-layout>
+    <div class="h-screen flex overflow-hidden bg-primary">
+        <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
+            <x-navs.header-nav></x-navs.header-nav>
+            <div class="flex-1 relative z-0 flex overflow-hidden">
+                <main class="  flex-1 relative z-0 overflow-hidden focus:outline-none">
+                    <div class="bg-white absolute inset-0 m-2 sm:m-4 lg:m-6 border border-accent rounded-lg">
+                        {{ $slot }}
+                    </div>
+                </main>
+                @isset($aside)
+                    <aside class="hidden relative lg:flex lg:flex-col flex-shrink-0 w-1/3">
+                        <div class="bg-white absolute inset-0 m-2 sm:m-4 lg:m-6 border border-accent rounded-lg">
+                            {{ $aside }}
+                        </div>
+                    </aside>
+                @endisset
+            </div>
+        </div>
     </div>
-    <div class="relative container mx-auto">
-
-        @yield('content')
-        @isset($slot)
-            {{ $slot }}
-        @endisset
-    </div>
-
-@endsection
-
-{{-- background-image: url("/your-dir/your_image.jpg");
-min-height: 100%;
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-position: center;
-background-size: cover;} --}}
+</x-base-layout>

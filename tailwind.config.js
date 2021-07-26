@@ -17,6 +17,10 @@ module.exports = {
                 source: ['source sans pro', 'sans-serif'],
             },
             colors: {
+                primary: '#424141',
+                secondary: '#21825c',
+                accent: '#a4d792',
+                light: '#f7fdb6',
                 blueGray: colors.blueGray,
                 lime: colors.lime,
                 orange: colors.orange,

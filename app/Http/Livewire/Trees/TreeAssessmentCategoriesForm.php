@@ -27,10 +27,12 @@ class TreeAssessmentCategoriesForm extends Component
     public $toggles = [
         'twig dieback'
     ];
+//TODO: make a method to get the category, section and form  properties
+// TODO: make this controller reusable for all categories of the assessment
+// TODO: add type column to the categories tables and seeders to identify the type of input using a numeric value
 
     public function mount($category, $lastSectionCompleted = 0)
     {
-        // dd(array_values($this->category)[0]);
         $this->currentSection = $lastSectionCompleted;
         $this->category = $category;
         $this->sections = array_keys(array_values($this->category)[0]);
@@ -57,8 +59,10 @@ class TreeAssessmentCategoriesForm extends Component
         }
     }
 
+    // TODO: catch when a checkboxs value may come back as false from being unchecked, if section value is false push to sectionsToComplete
     public function updatedSelectedValue($value)
     {
+        // dd($value, $this->sections[$this->currentSection], $this->selectedValue);
         array_push($this->sectionsCompleted, $this->sections[$this->currentSection]);
     }
 
@@ -78,7 +82,6 @@ class TreeAssessmentCategoriesForm extends Component
     {
         $this->sectionsToComplete = array_diff($this->sections, $this->sectionsCompleted);
         $this->emitUp('attachValuesAndProcced',
-            key($this->category),
             ['sectionsToComplete' => $this->sectionsToComplete],
             [$this->categoryTitle => $this->selectedValue],
            );
