@@ -15,11 +15,12 @@ class CreateAssessmentsTable extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assessed_tree_id')->constrained('assessed_trees');
-            $table->foreignId('assessor_id')->constrained('users');
+            $table->foreignId('assessed_tree_id')->nullable()->constrained('assessed_trees');
+            $table->foreignId('assessor_id')->nullable()->constrained('users');
             $table->integer('hazard_rating')->nullable();
-            $table->string('last_section_completed')->default('assessment-start');
+            $table->string('last_category_completed')->default('start');
             $table->timestamp('completed_at')->nullable();
+            $table->timestamp('started_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
