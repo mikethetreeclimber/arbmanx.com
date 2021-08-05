@@ -4,9 +4,8 @@ namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
 use App\Models\Tree\Tree;
-use Illuminate\Pagination\Paginator;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class TreeSpeciesSelect extends Component
 {
@@ -14,17 +13,15 @@ class TreeSpeciesSelect extends Component
 
     public $category;
     public $search = '';
-    public $filter = 'common_name';
-    public $assessedTree = [];
-
-    public function mount($category)
-    {
-        $this->category = $category;
-    }
 
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function treeSpeciesAdded(Tree $tree)
+    {
+        $this->emitTo(AssessmentForm::class, 'goToTreeDetails', $tree->id);
     }
 
     public function render()

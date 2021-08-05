@@ -2,7 +2,7 @@
     <x-slot name="header">
         <x-navs.content-header postion="top">
             <x-slot name="title">
-                {{ key($category) }}
+                <h2>Tree Species</h2>
             </x-slot>
             <x-slot name="trigger">
                 <x-btns.dot-btn />
@@ -34,8 +34,7 @@
                 <label
                     class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6 md:grid md:grid-cols-3">
                     <div class="flex items-center text-sm">
-                        <input wire:click="$emitUp('treeSpeciesAdded', {{ $tree->id }})" type="radio"
-                            name="pricing-plan" value="Startup"
+                        <input wire:click="treeSpeciesAdded({{ $tree->id }})" type="radio"
                             class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
                             aria-labelledby="pricing-plans-0-label"
                             aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
@@ -72,7 +71,6 @@
                 </label>
             @endforelse
         </div>
-
     </fieldset>
     <x-slot name="footer">
         <div class="m-3">{{ $trees->onEachSide(0)->links() }}</div>
