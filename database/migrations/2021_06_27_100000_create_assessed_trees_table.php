@@ -18,10 +18,10 @@ class CreateAssessedTreesTable extends Migration
             $table->foreignId('owner_id')->constrained('users');
             $table->string('owned_by')->nullable();
             $table->foreignId('tree_id')->constrained('trees');
-            $table->integer('dbh');
-            $table->integer('height');
-            $table->integer('spread');
-            $table->integer('number_of_trunks');
+            $table->integer('dbh')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('spread')->nullable();
+            $table->integer('number_of_trunks')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
