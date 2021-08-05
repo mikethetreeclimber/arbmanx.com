@@ -11,6 +11,10 @@ class Assessment extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+    protected $casts = [
+        'completed_at' => 'datetime',
+        'started_at' => 'datetime'
+    ];
 
     public function assessor()
     {
