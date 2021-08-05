@@ -2,7 +2,7 @@
         @if ($currentCategory === 'tree_species')
             @livewire('trees.tree-species-select')
         @elseif ( $currentCategory === 'tree_details')
-            @livewire('trees.tree-details', ['treeSpecies' => $treeSpecies])
+            @livewire('trees.tree-details', compact('currentCategory', 'treeSpecies'))
         @else
             @livewire('trees.tree-assessment-categories-form',
             [

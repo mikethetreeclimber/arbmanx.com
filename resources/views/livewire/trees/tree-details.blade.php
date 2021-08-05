@@ -1,61 +1,14 @@
-{{-- <div class="grid grid-cols-6 gap-6">
-                           
-
-    <div class="col-span-6">
-        <label for="street-address" class="block text-sm font-medium text-gray-700">Street
-            address</label>
-        <input type="text"
-            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-    </div>
-
-    <div class="col-span-6 sm:col-span-6 lg:col-span-2">
-        <label for="city" class="block text-sm font-medium text-gray-700">City</label>
-        <input wire:model="dbh" placeholder="Enter the DBH"
-            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-    </div>
-
-    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-        <label for="state" class="block text-sm font-medium text-gray-700">State /
-            Province</label>
-        <input type="text" wire:model="spread" placeholder="Enter the Spread"
-            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-    </div>
-
-    <div class="col-span-6 sm:col-span-3 lg:col-span-2">
-        <label for="postal-code" class="block text-sm font-medium text-gray-700">ZIP /
-            Postal</label>
-        <input type="text" wire:model="numberOfTrunks" placeholder="Enter the number of Trunks"
-            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
-    </div>
-    <button 
-        class="bg-lime-700 px-2 py-4 block rounded shadow border border-amber-500 font-source text-xl text-amber-500 w-full">Go
-        to Next
-        Step</button>
-</div> --}}
-
 <x-cards.scrolling-card>
     <div class="md:grid md:grid-cols-12 md:gap-x-5">
         <aside class="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
             <nav class="space-y-1">
                 <!-- Current: "bg-gray-50 text-indigo-700 hover:text-indigo-700 hover:bg-white", Default: "text-gray-900 hover:text-gray-900 hover:bg-gray-50" -->
-                <a href="#"
-                    class="bg-gray-50 text-indigo-700 hover:text-indigo-700 hover:bg-white group rounded-md px-3 py-2 flex items-center text-sm font-medium"
-                    aria-current="page">
-                    <!--
-                        Heroicon name: outline/user-circle
-  
-                            Current: "text-indigo-500 group-hover:text-indigo-500", Default: "text-gray-400 group-hover:text-gray-500"
-                    -->
-                    <svg class="text-indigo-500 group-hover:text-indigo-500 flex-shrink-0 -ml-1 mr-3 h-6 w-6"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                        aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span class="truncate">
-                        Tree Species
+                <x-navs.responsive-nav-link href="#" active="tree_species" :request="request()">
+                    <span class="inline-flex justify-center items-center pr-2 ml-4">
+                        <i class="fa fa-list" aria-hidden="true"></i>
+                        Tree Details
                     </span>
-                </a>
+                </x-navs.responsive-nav-link>
 
                 <a href="#"
                     class="text-gray-900 hover:text-gray-900 hover:bg-gray-50 group rounded-md px-3 py-2 flex items-center text-sm font-medium">

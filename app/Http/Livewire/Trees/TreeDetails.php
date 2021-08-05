@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Session;
 
 class TreeDetails extends Component 
 {
+    public $currentCategory;
     public $assessedTree;
     public $treeId;
     public $ownerId;
@@ -19,8 +20,9 @@ class TreeDetails extends Component
     public $spread;
     public $numberOfTrunks;
 
-    public function mount(Tree $treeSpecies, $ownerId = 1)
+    public function mount(Request $request, Tree $treeSpecies, $currentCategory, $ownerId = 1)
     {
+        $this->currentCategory  = $currentCategory;
         $this->ownerId          = $ownerId;                       
         $this->treeId           = $treeSpecies->id;
         $this->treeCommonName   = $treeSpecies->common_name;
