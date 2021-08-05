@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Livewire\Trees\AssessmentForm;
+use App\Http\Controllers\Trees\TreeHazardAssessmentController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Trees\AssessmentForm;
 
-Route::get('/customers', function () {
-    return "this is the customers index route";
-});
+Route::get('/start_assessment', [TreeHazardAssessmentController::class, 'index'] );
 
 
 Route::group(['middleware'=> 'auth'], function(){

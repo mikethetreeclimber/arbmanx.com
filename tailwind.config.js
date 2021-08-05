@@ -45,9 +45,6 @@ module.exports = {
             './resources/**/*.php',
             './resources/**/*.vue',
             './resources/**/*.twig',
-            './vendor/ph7jack/wireui/resources/**/*.blade.php',
-            './vendor/ph7jack/wireui/ts/**/*.ts',
-            './vendor/ph7jack/wireui/src/View/**/*.php'
         ],
         options: {
             defaultExtractor: (content) => content.match(/[\w-/.:]+(?<!:)/g) || [],

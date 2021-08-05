@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::view('/', 'welcome')->name('home');
 
-Route::view('/design', 'design')->name('design');
+Route::get('/test', function (){
+    return Tree::all();
+});
+// Route::view('/design', 'design')->name('design');
 
 // Route::get('/test', function(){
 //     $searchTerm = 'red';
