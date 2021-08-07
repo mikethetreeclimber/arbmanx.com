@@ -3,9 +3,11 @@
         <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
             <x-navs.header-nav></x-navs.header-nav>
             <div class="flex-1 relative z-0 flex overflow-hidden">
-                <nav>
-                    {{ $nav }}
-                </nav>
+                @if (isset($nav))
+                    <nav>
+                        {{ $nav }}
+                    </nav>
+                @endif
                 <main class="  flex-1 relative z-0 overflow-hidden focus:outline-none">
                     <div class="bg-white absolute inset-0 mx-2 my-2 md:my-6 border border-accent rounded-lg">
                         {{ $slot }}
