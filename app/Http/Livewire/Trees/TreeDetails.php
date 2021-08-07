@@ -20,6 +20,10 @@ class TreeDetails extends Component
     public $spread;
     public $numberOfTrunks;
 
+    protected $listeners = [
+        'createAssessedTreeModel'
+    ];
+
     public function mount(Request $request, Tree $treeSpecies, $currentCategory, $ownerId = 1)
     {
         $this->currentCategory  = $currentCategory;

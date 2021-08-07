@@ -38,11 +38,13 @@ class AssessmentForm extends Component
         $this->currentCategory  = 'tree_details';
     }
     
-    public function createAssessmentModel(AssessedTree $assessedTree)
+    public function createAssessmentModel($assessedTree)
     {
         $this->assessment = new Assessment([
             'assessor_id'       => $this->assessorId,
-            'assessed_tree_id'  => $assessedTree->id
+            'assessed_tree_id'  => $assessedTree['id'],
+            'last_category_completed' => $this->currentCategory,
+            'started_at'        => now()
         ]);
         $this->assessment->save();
         $this->getAssessmentCategories();

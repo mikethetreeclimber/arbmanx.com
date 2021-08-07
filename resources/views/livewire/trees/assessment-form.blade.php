@@ -1,3 +1,18 @@
+@if (session()->has('success'))
+    <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
+        <p class="font-bold">
+            {{ session('success') }}
+        </p>
+    </div>
+@endif
+@if (session()->has('error'))
+    <div class="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
+        <p class="font-bold">
+            {{ session('error') }}
+        </p>
+    </div>
+@endif
+
 <x-slot name="nav">
     <aside class="hidden py-2 px-2 md:block lg:py-6 lg:px-2">
         <nav class="space-y-1">
@@ -66,26 +81,19 @@
             </a>
         </nav>
     </aside>
-
 </x-slot>
 <main class="h-full">
-    <x-cards.scrolling-card>
-
-
-
-
-        @if ($currentCategory === 'tree_species')
-            @livewire('trees.tree-species-select')
-        @elseif ( $currentCategory === 'tree_details')
-            @livewire('trees.tree-details', compact('currentCategory', 'treeSpecies'))
-        @else
-            @livewire('trees.tree-assessment-categories-form',
-            [
-            'categories' => $categories,
-            'assessment' => $assessment
-            ])
-        @endif
-    </x-cards.scrolling-card>
+    @if ($currentCategory === 'tree_species')
+        @livewire('trees.tree-species-select')
+    @elseif ( $currentCategory === 'tree_details')
+        @livewire('trees.tree-details', compact('currentCategory', 'treeSpecies'))
+    @else
+        @livewire('trees.tree-assessment-categories-form',
+        [
+        'categories' => $categories,
+        'assessment' => $assessment
+        ])
+    @endif
 </main>
 <x-slot name="aside">
     <x-cards.scrolling-card>
@@ -237,17 +245,3 @@
         </x-slot>
     </x-cards.scrolling-card>
 </x-slot>
-@if (session()->has('success'))
-    <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4" role="alert">
-        <p class="font-bold">
-            {{ session('success') }}
-        </p>
-    </div>
-@endif
-@if (session()->has('error'))
-    <div class="bg-red-200 border-red-600 text-red-600 border-l-4 p-4" role="alert">
-        <p class="font-bold">
-            {{ session('error') }}
-        </p>
-    </div>
-@endif

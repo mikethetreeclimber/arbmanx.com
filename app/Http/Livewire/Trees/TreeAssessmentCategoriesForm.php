@@ -26,9 +26,10 @@ class TreeAssessmentCategoriesForm extends Component
     public $inputType;
     public $checkboxes = [
         'special value',
+        'twig dieback'
     ];
     public $toggles = [
-        'twig dieback'
+       
     ];
     protected $queryString = [
         'section'
@@ -39,7 +40,7 @@ class TreeAssessmentCategoriesForm extends Component
 
     public function mount($categories, $assessment, $lastCategoryCompleted = null, $lastSectionCompleted = null )
     {
-        $this->assessment = $assessment;
+        $this->assessment       = $assessment;
         $this->categoryTitles   = array_keys($categories[key($categories)]);
         $this->categories       = collect($categories)->flatten(1);
        
@@ -78,6 +79,9 @@ class TreeAssessmentCategoriesForm extends Component
             array_push($this->sectionInputs, collect($input)->toArray());
         });
 
+        $this->assessment->update([
+            'last_category_completed' => $this->currentCategory.'-'.$this->section 
+        ]);
         if(in_array($this->sectionTitle, $this->checkboxes)){
             $this->inputType = 'checkbox';
         }elseif(in_array($this->sectionTitle, $this->toggles)){
