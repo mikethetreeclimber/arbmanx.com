@@ -98,7 +98,6 @@
             </fieldset>
         </div>
     </div>
-
     <x-slot name="footer">
         <div class="flex items-center justify-between p-2 m-2 md:p-4 md:m-4">
             @if ($sectionIndex > 0)
@@ -127,6 +126,4 @@
             @endif
         </div>
     </x-slot>
-
-
 </x-cards.scrolling-card>
