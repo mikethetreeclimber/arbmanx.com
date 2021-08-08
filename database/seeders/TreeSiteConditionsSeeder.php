@@ -52,37 +52,37 @@ class TreeSiteConditionsSeeder extends Seeder
             ],
             [
                 'id' => 8,
-                'section' => 'landscape section',
+                'section' => 'landscape',
                 'value' => 'parkway'
             ],
             [
                 'id' => 9,
-                'section' => 'landscape section',
+                'section' => 'landscape',
                 'value' => 'raised bed'
             ],
             [
                 'id' => 10,
-                'section' => 'landscape section',
+                'section' => 'landscape',
                 'value' => 'container'
             ],
             [
                 'id' => 11,
-                'section' => 'landscape section',
+                'section' => 'landscape',
                 'value' => 'mound'
             ],
             [
                 'id' => 12,
-                'section' => 'landscape section',
+                'section' => 'landscape',
                 'value' => 'lawn'
             ],
             [
                 'id' => 13,
-                'section' => 'landscape section',
+                'section' => 'landscape',
                 'value' => 'shrub border'
             ],
             [
                 'id' => 14,
-                'section' => 'landscape section',
+                'section' => 'landscape',
                 'value' => 'wind break'
             ],
             [

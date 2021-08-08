@@ -26,10 +26,11 @@ class TreeAssessmentCategoriesForm extends Component
     public $inputType;
     public $checkboxes = [
         'special value',
-        'twig dieback'
+        'site character',
+        'landscape'
     ];
     public $toggles = [
-       
+        'twig dieback',
     ];
     protected $queryString = [
         'section'
@@ -112,6 +113,11 @@ class TreeAssessmentCategoriesForm extends Component
         array_push($this->sectionsCompleted, $filtered);
     }
 
+    public function setToggleVariable($toggleVariableId)
+    {   
+       $this->selectedValues[$this->sectionTitle] = $toggleVariableId;
+    }
+
     public function goToNextSection()
     {
         $this->sectionIndex++;
@@ -126,8 +132,8 @@ class TreeAssessmentCategoriesForm extends Component
 
     public function goToNextCategory()
     {
-        // session()->flash('success', 'The Tree\'s '.ucwords($this->currentCategory).' were successfully added to the Hazard Assessment');
         $this->sectionIndex = 0;
+        $this->dispatchBrowserEvent('saved', 'The Tree\'s '.ucwords($this->currentCategory).' were successfully added to the Hazard Assessment');
         $this->categoryIndex++;
         $this->setCategoriesVariables($this->categoryIndex, $this->sectionIndex);
     }
