@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
 use App\Models\Tree\Tree;
+use Illuminate\Http\Request;
 use App\Models\Tree\Assessment;
 use App\Models\Tree\TreeHealth;
 use App\Models\Tree\TreeTarget;
@@ -18,24 +19,23 @@ class AssessmentForm extends Component
     public $treeSpecies;
     public $categories;
     public $currentCategory;
-    protected $queryString = [
-        'currentCategory',
-    ];
     protected $listeners = [
         'goToTreeDetails',    
         'createAssessmentModel'
     ];
 
-    public function mount($lastCategoryCompleted = 'tree_species', $assessorId = 1)
+    public function mount(Request $request, $lastCategoryCompleted = 'tree_species', $assessorId = 1)
     {   
-        $this->currentCategory  = $lastCategoryCompleted;
+        // dd($request->all());
+        $this->currentCategory  = $request->get('category');
         $this->assessorId       = $assessorId;
     }
 
-    public function goToTreeDetails(Tree $tree)
+    public function goToTreeDetails(Request $request, Tree $tree)
     {
-        $this->treeSpecies      = $tree;
-        $this->currentCategory  = 'tree_details';
+        // // dd($request->all());
+        // $this->treeSpecies      = $tree;
+        // $this->currentCategory  = 'tree_details';
     }
     
     public function createAssessmentModel($assessedTree)

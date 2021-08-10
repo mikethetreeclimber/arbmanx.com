@@ -1,7 +1,7 @@
 <x-app-layout>
 
 
-    <main class="dark:bg-gray-800 font-mono bg-white relative overflow-hidden h-screen">
+    <main class="dark:bg-gray-800 font-mono bg-white relative overflow-hidden h-full">
         <div class="hidden md:block absolute -bottom-32 -left-32 w-96 h-96">
             <div class="absolute text-extrabold text-xl right-12 z-20 text-start top-1/4">
                 <span class="text-7xl">
@@ -72,7 +72,7 @@
                         Building digital products, brands, and experiences.
                     </h2> --}}
                     <div class="flex items-center justify-center mt-4">
-                        <a href="{{ route('assessment-form') }}"
+                        <a href="{{ route('start-assessment') }}"
                             class="uppercase py-2 my-2 px-4 md:mt-16 bg-transparent bg-lime-700 text-amber-400 border-2 border-gray-800  dark:text-white hover:bg-gray-800 hover:text-white text-md">
                             Click Here Tree Assessment
                         </a>
@@ -81,6 +81,4 @@
             </div>
         </div>
     </main>
-
-
 </x-app-layout>

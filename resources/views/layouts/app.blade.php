@@ -8,7 +8,7 @@
                         {{ $nav }}
                     </nav>
                 @endif
-                <main class="  flex-1 relative z-0 overflow-hidden focus:outline-none">
+                <main class="  flex-1 relative z-0 overflow-auto focus:outline-none">
                     <div class="bg-white absolute inset-0 mx-2 my-2 md:my-6 border border-accent rounded-lg">
                         {{ $slot }}
                     </div>

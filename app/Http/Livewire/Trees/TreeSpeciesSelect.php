@@ -4,8 +4,8 @@ namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
 use App\Models\Tree\Tree;
+use Illuminate\Http\Request;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\Session;
 
 class TreeSpeciesSelect extends Component
 {
@@ -14,6 +14,11 @@ class TreeSpeciesSelect extends Component
     public $category;
     public $search = '';
 
+    public function mount(Request $request)
+    {
+        dd($request->all());
+    }
+
     public function updatingSearch()
     {
         $this->resetPage();
@@ -21,7 +26,13 @@ class TreeSpeciesSelect extends Component
 
     public function treeSpeciesAdded(Tree $tree)
     {
-        $this->emitTo(AssessmentForm::class, 'goToTreeDetails', $tree->id);
+        $url = route('assessment-form', [
+            'category'  => 'tree_details',
+            'tree'      =>  $tree->id    
+        ]);
+
+        return redirect($url);
+        // $this->emitTo(AssessmentForm::class, 'goToTreeDetails', $tree->id);
     }
 
     public function render()
