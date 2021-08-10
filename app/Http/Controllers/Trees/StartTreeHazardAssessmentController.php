@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Trees;
 use Illuminate\Http\Request;
 use App\Models\Tree\Assessment;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Trees\AssessmentForm;
 
 class StartTreeHazardAssessmentController extends Controller
@@ -24,14 +25,24 @@ class StartTreeHazardAssessmentController extends Controller
 
     public function index()
     {
- 
-        // return view('livewire.trees.tree-species-select', )
-        $url = route('assessment-form', [
-            'assessment'    => $this->assessment->id,
-            'category'      => $this->category , 
-            'section'       => $this->section
-        ]);
+        dd('this is where all the assessments for the current user should be displayed');
+    }
+
+    public function create()
+    {
+        $url = route('trees.assessment.form', [
+                'assessment'    => $this->assessment->id,
+                'category'      => $this->category , 
+                'section'       => $this->section
+            ]);
 
         return redirect($url);
+            // return new AssessmentForm();
+
+    }
+
+    public function edit(Assessment $assessment)
+    {
+        dd($assessment);
     }
 }

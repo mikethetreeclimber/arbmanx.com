@@ -19,16 +19,24 @@ class AssessmentForm extends Component
     public $treeSpecies;
     public $categories;
     public $currentCategory;
+    public $currentSection;
     protected $listeners = [
         'goToTreeDetails',    
         'createAssessmentModel'
     ];
 
-    public function mount(Request $request, $lastCategoryCompleted = 'tree_species', $assessorId = 1)
+    public function mount(Request $request, $assessorId = 1)
     {   
-        // dd($request->all());
+        $assessmentId  = $request->get('assessment');
+        $this->assessment = Assessment::find($assessmentId);
+        $this->assessment->update([
+            'started_at' => now()
+        ]);
         $this->currentCategory  = $request->get('category');
-        $this->assessorId       = $assessorId;
+        $this->currentSection  = $request->get('section');
+        $this->assessorId       = auth()->id();
+        dd($this->assessment);
+
     }
 
     public function goToTreeDetails(Request $request, Tree $tree)
@@ -38,17 +46,17 @@ class AssessmentForm extends Component
         // $this->currentCategory  = 'tree_details';
     }
     
-    public function createAssessmentModel($assessedTree)
-    {
-        $this->assessment = new Assessment([
-            'assessor_id'       => $this->assessorId,
-            'assessed_tree_id'  => $assessedTree['id'],
-            'last_category_completed' => $this->currentCategory,
-            'started_at'        => now()
-        ]);
-        $this->assessment->save();
-        $this->getAssessmentCategories();
-    }
+    // public function createAssessmentModel($assessedTree)
+    // {
+    //     $this->assessment = new Assessment([
+    //         'assessor_id'       => $this->assessorId,
+    //         'assessed_tree_id'  => $assessedTree['id'],
+    //         'last_category_completed' => $this->currentCategory,
+    //         'started_at'        => now()
+    //     ]);
+    //     $this->assessment->save();
+    //     $this->getAssessmentCategories();
+    // }
     // TODO: move this
     public function getAssessmentCategories()
     {
