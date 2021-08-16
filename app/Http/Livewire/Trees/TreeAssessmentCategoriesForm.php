@@ -21,17 +21,28 @@ class TreeAssessmentCategoriesForm extends Component
     public int $sectionsCount;
     public $sectionInputs = [];
     public $selectedValues = [];
-    public $sectionsCompleted = [];
-    public $currentSectionsSelectedValues = [];
-    // public $sectionsToComplete;
+    public $sectionsToComplete;
     public $inputType;
     public $checkboxes = [
         'special value',
         'site character',
-        'landscape'
+        'landscape',
+        'growth obstructions',
+        'soil problems',
+        'obstructions',
+        'use under tree',
+        'prevailing wind direction',
+        'common weather',
+        'use under tree'
     ];
     public $toggles = [
         'twig dieback',
+        'epicormics',
+        'can target be moved?',
+        'can target be restricted?',
+        'target within dripline?',
+        'target within 1x the height of the tree?',
+        'target within 1.5x the height of the tree?'
     ];
 //TODO: make a method to get the category, section and form  properties
 // TODO: make this controller reusable for all categories of the assessment
@@ -130,7 +141,6 @@ class TreeAssessmentCategoriesForm extends Component
 
     public function addSelectedValuesToAssessment()
     {
-        Log::info([$this->currentCategory =>[$this->selectedValues, $this->sectionsCompleted]]);
         $this->setCategoriesVariables($this->categoryIndex, $this->sectionIndex);
         // TODO move to a sanitize class or method 
         $this->sectionsToComplete = array_unique(preg_replace('/\d/', '', array_keys(array_diff(array_filter($this->selectedValues), $this->sections))));

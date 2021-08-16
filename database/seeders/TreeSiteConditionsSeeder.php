@@ -196,7 +196,6 @@ class TreeSiteConditionsSeeder extends Seeder
                 'section' => 'soil problems',
                 'value' => 'expansive'
             ],
-            //
             [
                 'id' => 37,
                 'section' => 'obstructions',
@@ -244,7 +243,7 @@ class TreeSiteConditionsSeeder extends Seeder
             ],
             [
                 'id' => 46,
-                'section' => 'l',
+                'section' => 'pavement lifted',
                 'value' => 'true'
             ],
             [
