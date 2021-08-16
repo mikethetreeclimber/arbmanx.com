@@ -14,7 +14,7 @@ Route::middleware('auth')->prefix('/trees')->name('trees.')->group( function(){
     Route::prefix('/assessment')->name('assessment.')->group(function() {
         Route::get('/', [StartTreeHazardAssessmentController::class, 'index']);
         Route::get('/start', [StartTreeHazardAssessmentController::class, 'create'] )->name('start');
-        Route::get('/{id}', [StartTreeHazardAssessmentController::class, 'update'] )->name('continue');
+        Route::get('/{id}', [StartTreeHazardAssessmentController::class, 'edit'] )->name('continue');
         Route::get('/', AssessmentForm::class)->name('form');
     });
 });

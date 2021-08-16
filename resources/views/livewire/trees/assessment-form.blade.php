@@ -88,13 +88,11 @@
     @elseif ( $currentCategory === 'tree_details')
         @livewire('trees.tree-details', compact('treeSpecies', 'currentCategory'))
     @else
-        @livewire('trees.tree-assessment-categories-form',
-        [
-        'categories' => $categories,
-        'assessment' => $assessment
-        ])
+        @livewire('trees.tree-assessment-categories-form', compact('categories', 'assessment'))
     @endif
 </main>
+
+{{-- //TODO: make this into its own livewire component --}}
 <x-slot name="aside">
     <x-cards.scrolling-card>
         <x-slot name="header">
@@ -171,11 +169,11 @@
                 </div> --}}
             </div>
             <div>
-                <h3 class="font-medium text-gray-900">Information</h3>
+                <h3 class="font-medium text-gray-900">Assessed Tree Details</h3>
                 <dl class="mt-2 border-t border-b border-gray-200 divide-y divide-gray-200">
                     <div class="py-3 flex justify-between text-sm font-medium">
-                        <dt class="text-gray-500">Uploaded by</dt>
-                        <dd class="text-gray-900">Marie Culver</dd>
+                        <dt class="text-gray-500">Common Name</dt>
+                        <dd class="text-gray-900" wire:model="treeSpecies">{{ $treeSpecies->common_name ?? '' }}</dd>
                     </div>
                     <div class="py-3 flex justify-between text-sm font-medium">
                         <dt class="text-gray-500">Created</dt>

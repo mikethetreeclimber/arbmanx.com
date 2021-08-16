@@ -16,13 +16,14 @@ class TreeAssessmentCategoriesForm extends Component
     public string $currentCategory;
     public int $categoryIndex;
     public $sections;
-    public $section;
     public $sectionTitle;
     public int $sectionIndex;
     public int $sectionsCount;
     public $sectionInputs = [];
     public $selectedValues = [];
     public $sectionsCompleted = [];
+    public $currentSectionsSelectedValues = [];
+    // public $sectionsToComplete;
     public $inputType;
     public $checkboxes = [
         'special value',
@@ -31,9 +32,6 @@ class TreeAssessmentCategoriesForm extends Component
     ];
     public $toggles = [
         'twig dieback',
-    ];
-    protected $queryString = [
-        'section'
     ];
 //TODO: make a method to get the category, section and form  properties
 // TODO: make this controller reusable for all categories of the assessment
@@ -44,7 +42,6 @@ class TreeAssessmentCategoriesForm extends Component
         $this->assessment       = $assessment;
         $this->categoryTitles   = array_keys($categories[key($categories)]);
         $this->categories       = collect($categories)->flatten(1);
-       
         $this->setCategoriesVariables($lastCategoryCompleted, $lastSectionCompleted);
     }
 
@@ -61,9 +58,11 @@ class TreeAssessmentCategoriesForm extends Component
         } else {
             $this->sectionIndex = 0;
         }
-        
+        // Title below
         $this->currentCategory  = $this->categoryTitles[$this->categoryIndex];
+        // Array below
         $this->category         = $this->categories[$this->categoryIndex];
+        $this->emitTo(AssessmentForm::class, 'setCategory', $this->currentCategory,);
         $this->setSectionVariables();
     }
     
@@ -73,15 +72,15 @@ class TreeAssessmentCategoriesForm extends Component
         $this->sectionsCount    = count($this->sections) - 1;
         $this->sectionsValues   = array_values($this->category);
         $this->sectionTitle     = $this->sections[$this->sectionIndex];
-        $this->section          = $this->sectionTitle;
         $this->sectionInputs    = [];
         collect($this->sectionsValues[$this->sectionIndex])
         ->map(function($input){
             array_push($this->sectionInputs, collect($input)->toArray());
         });
 
+
         $this->assessment->update([
-            'last_category_completed' => $this->currentCategory.'-'.$this->section 
+            'last_category_completed' => $this->currentCategory.'-'.$this->sectionTitle 
         ]);
         if(in_array($this->sectionTitle, $this->checkboxes)){
             $this->inputType = 'checkbox';
@@ -90,6 +89,7 @@ class TreeAssessmentCategoriesForm extends Component
         }else{
             $this->inputType = 'radio';
         }
+        $this->emitTo(AssessmentForm::class, 'setQueryString',$this->currentCategory, $this->sectionTitle);
     }
 
     public function updatedCategory($value)
@@ -97,25 +97,9 @@ class TreeAssessmentCategoriesForm extends Component
         dd($value);
     }
 
-    // TODO: catch when a checkboxs value may come back as false from being unchecked, 
-    //       if section value is false push to sectionsToComplete
-    public function updatedSelectedValues($value, $section)
-    {
-        $filtered = preg_replace('/\d/', '', $section);
-        // if($value === false && in_array($filtered, array_flip($this->sectionsCompleted))){
-        //         preg_replace_array((echo $filtered), [], array_flip($this->sectionsCompleted));
-        //         return;
-        // }
-        // if($value === false && !in_array($filtered, array_flip($this->sectionsCompleted))){
-        //     return;
-        // }else{
-        // }
-        array_push($this->sectionsCompleted, $filtered);
-    }
-
     public function setToggleVariable($toggleVariableId)
     {   
-       $this->selectedValues[$this->sectionTitle] = $toggleVariableId;
+       $this->selectedValues[$this->sectionTitle] = settype($toggleVariableId, 'string');
     }
 
     public function goToNextSection()
@@ -136,8 +120,6 @@ class TreeAssessmentCategoriesForm extends Component
         $this->dispatchBrowserEvent('saved', 'The Tree\'s '.ucwords($this->currentCategory).' were successfully added to the Hazard Assessment');
         $this->categoryIndex++;
         $this->setCategoriesVariables($this->categoryIndex, $this->sectionIndex);
-        // dd($this->currentCategory, $this->category);
-        $this->emitTo(AssessmentForm::class, 'setCurrentCategory', $this->currentCategory);
     }
 
     public function goToPreviousCategory()
@@ -150,9 +132,11 @@ class TreeAssessmentCategoriesForm extends Component
     {
         Log::info([$this->currentCategory =>[$this->selectedValues, $this->sectionsCompleted]]);
         $this->setCategoriesVariables($this->categoryIndex, $this->sectionIndex);
-        $this->sectionsToComplete = array_diff($this->sections, $this->sectionsCompleted);
+        // TODO move to a sanitize class or method 
+        $this->sectionsToComplete = array_unique(preg_replace('/\d/', '', array_keys(array_diff(array_filter($this->selectedValues), $this->sections))));
         try {
             collect($this->selectedValues)
+            ->filter()
             ->flatten()
             ->map(function ($selectedValue) {
             $this->assessment->{$this->currentCategory}()->attach($selectedValue);

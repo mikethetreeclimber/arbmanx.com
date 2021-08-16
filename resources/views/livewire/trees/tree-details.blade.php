@@ -63,15 +63,13 @@
     </main>
     <x-slot name="footer">
         <div class="p-4">
-            <div class="flex justify-end">
-                <button type="button"
-                    class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+            <div class="flex justify-evenly">
+                <x-btns.primary-btn type="button">
                     Cancel
-                </button>
-                <button wire:click="createAssessedTreeModel" type="button"
-                    class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg font-medium text-light bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                </x-btns.primary-btn>
+                <x-btns.primary-btn wire:click="createAssessedTreeModel" type="button">
                     Add Details
-                </button>
+                </x-btns.primary-btn>
             </div>
         </div>
     </x-slot>

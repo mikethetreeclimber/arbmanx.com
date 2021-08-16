@@ -1,4 +1,4 @@
-<div x-data="{menu: false}">
+<div x-data="{menu: false}" style="display: none">
     <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
     <div x-show="menu" class="fixed inset-0 flex z-40 " role="dialog" aria-modal="true">
         <!--

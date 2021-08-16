@@ -180,10 +180,10 @@
     <x-slot name="footer">
         <div class="flex items-center justify-between p-2 m-2">
             @if ($sectionIndex > 0)
-                <button wire:click="goToPreviousSection" type="button"
-                    class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
+
+                <x-btns.primary-btn wire:click="goToPreviousSection" type="button">
                     back
-                </button>
+                </x-btns.primary-btn>
             @else
                 <div></div>
             @endif
@@ -192,16 +192,14 @@
                             review
                         </button> --}}
             @if ($sectionIndex === $sectionsCount)
-                <button wire:click="addSelectedValuesToAssessment" type="button"
-                    class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
+                <x-btns.primary-btn wire:click="addSelectedValuesToAssessment" type="button">
                     save
-                </button>
+                </x-btns.primary-btn>
             @endif
             @if ($sectionIndex < $sectionsCount)
-                <button wire:click="goToNextSection" type="button"
-                    class="rounded-xl px-6 py-3 uppercase text-lg font-semibold hover:bg-gray-700 text-amber-400 bg-gray-900 opacity-80">
+                <x-btns.primary-btn wire:click="goToNextSection" type="button">
                     Next
-                </button>
+                </x-btns.primary-btn>
             @endif
         </div>
     </x-slot>

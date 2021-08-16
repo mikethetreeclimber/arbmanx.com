@@ -18,28 +18,33 @@ class AssessmentForm extends Component
     public $treeSpecies;
     public $categories;
     public $currentCategory;
+    public $section;
     protected $queryString = [
         'currentCategory',
+        'section'
     ];
 
     protected $listeners = [
         'goToTreeDetails',    
         'createAssessmentModel',
-        'setCurrentCategory'
+        'setQueryString', 
+        'setSection' 
     ];
 
     public function mount($lastCategoryCompleted = 'tree_species', $assessorId = 1)
     {   
+        $this->section          = null;
         $this->currentCategory  = $lastCategoryCompleted;
         $this->assessorId       = $assessorId;
     }
 
-    public function setCurrentCategory($currentCategory)
+    public function setQueryString($currentCategory, $section)
     {
         $this->reset();
-        $this->currentCategory = $currentCategory;
+        $this->currentCategory  = $currentCategory;
+        $this->section  = $section;
     }
-
+    
     public function goToTreeDetails(Tree $tree)
     {
         $this->treeSpecies      = $tree;
@@ -57,9 +62,11 @@ class AssessmentForm extends Component
         $this->assessment->save();
         $this->getAssessmentCategories();
     }
-    // TODO: move this
+
+    // TODO once to this part of assessment all logic should be called by categries component
     public function getAssessmentCategories()
     {
+        // TODO: move to repository maybe that will be called by the component
          $this->categories =  [
                 'assessment_categories' => [
                     'characteristics'   => collect(TreeCharacteristic::toBase()->get())->groupBy('section')->toArray(),
@@ -68,8 +75,9 @@ class AssessmentForm extends Component
                     'targets'           => collect(TreeTarget::toBase()->get())->groupBy('section')->toArray(),
                 ]
             ];
-            // dd(key($this->categories['assessment_categories']));
-        $this->currentCategory = 'assessment_categories';
+            // TODO move to the categories component
+            $this->currentCategory  = key($this->categories['assessment_categories']);
+            $this->section          = key($this->categories['assessment_categories'][$this->currentCategory]);
     }
 
     public function render()
