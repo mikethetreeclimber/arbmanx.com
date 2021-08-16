@@ -173,7 +173,7 @@ class TreeHealthSeeder extends Seeder
             [
                 'id'    => 32,
                 'section'  => 'live crown ratio',
-                'value'  => '40%-50%'
+                'value'  => '40-50%'
             ],
             [
                 'id'    => 33,
@@ -199,11 +199,6 @@ class TreeHealthSeeder extends Seeder
                 'id'    => 37,
                 'section'  => 'live crown ratio',
                 'value'  => '90-99%'
-            ],
-            [
-                'id'    => 38,
-                'section'  => 'live crown ratio',
-                'value'  => '100%'
             ],
         ];
         TreeHealth::insert($treeHealth);

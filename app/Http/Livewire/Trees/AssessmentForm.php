@@ -27,8 +27,7 @@ class AssessmentForm extends Component
     protected $listeners = [
         'goToTreeDetails',    
         'createAssessmentModel',
-        'setQueryString', 
-        'setSection' 
+        'setQueryString'
     ];
 
     public function mount($lastCategoryCompleted = 'tree_species', $assessorId = 1)

@@ -92,18 +92,18 @@ class TreeTargetsSeeder extends Seeder
             ],
             [
                 'id' => 16,
-                'section' => 'target within dripline?',
-                'value' => 'true'
+                'section' => 'target within',
+                'value' => 'dripline'
             ],
             [
                 'id' => 17,
-                'section' => 'target within 1x the height of the tree?',
-                'value' => 'true'
+                'section' => 'target within',
+                'value' => ' 1x the height of the tree'
             ],
             [
                 'id' => 18,
-                'section' => 'target within 1.5x the height of the tree?',
-                'value' => 'true'
+                'section' => 'target within',
+                'value' => ' 1.5x the height of the tree'
             ],
         ];
         TreeTarget::insert($treeTargets);

@@ -19,6 +19,7 @@ class CreateAssessmentsTable extends Migration
             $table->foreignId('assessor_id')->nullable()->constrained('users');
             $table->integer('hazard_rating')->nullable();
             $table->string('last_category_completed')->default('start');
+            $table->json('sections_to_complete');
             $table->timestamp('completed_at')->nullable();
             $table->timestamp('started_at')->nullable();
             $table->timestamps();

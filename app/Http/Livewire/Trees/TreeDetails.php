@@ -26,7 +26,6 @@ class TreeDetails extends Component
     public function mount(Tree $treeSpecies, $ownerId = 1)
     {
         $this->currentCategory  = 'tree_details';
-        $this->emitTo(AssessmentForm::class, 'setCurrentCategory', $this->currentCategory);
         $this->ownerId          = $ownerId;                       
         $this->treeId           = $treeSpecies->id;
         $this->treeCommonName   = $treeSpecies->common_name;
