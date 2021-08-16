@@ -2,13 +2,10 @@
     <x-slot name="header">
         <x-navs.content-header postion="top">
             <x-slot name="title">
-                <h2>Tree Species</h2>
+                <h2>{{ ucwords($currentCategory) }}</h2>
             </x-slot>
             <x-slot name="trigger">
                 <x-btns.dot-btn />
-            </x-slot>
-            <x-slot name="action">
-                <x-inputs.search wire:model="search" />
             </x-slot>
             <x-navs.nav-link>
                 Go Back to start

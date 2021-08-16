@@ -30,11 +30,7 @@ class StartTreeHazardAssessmentController extends Controller
 
     public function create()
     {
-        $url = route('trees.assessment.form', [
-                'assessment'    => $this->assessment->id,
-                'category'      => $this->category , 
-                'section'       => $this->section
-            ]);
+        $url = route('trees.assessment.form');
 
         return redirect($url);
             // return new AssessmentForm();

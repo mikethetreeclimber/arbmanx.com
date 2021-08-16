@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Trees;
 
 use Livewire\Component;
 use App\Models\Tree\Tree;
-use Illuminate\Http\Request;
 use App\Models\Tree\Assessment;
 use App\Models\Tree\TreeHealth;
 use App\Models\Tree\TreeTarget;
@@ -19,44 +18,45 @@ class AssessmentForm extends Component
     public $treeSpecies;
     public $categories;
     public $currentCategory;
-    public $currentSection;
-    protected $listeners = [
-        'goToTreeDetails',    
-        'createAssessmentModel'
+    protected $queryString = [
+        'currentCategory',
     ];
 
-    public function mount(Request $request, $assessorId = 1)
-    {   
-        $assessmentId  = $request->get('assessment');
-        $this->assessment = Assessment::find($assessmentId);
-        $this->assessment->update([
-            'started_at' => now()
-        ]);
-        $this->currentCategory  = $request->get('category');
-        $this->currentSection  = $request->get('section');
-        $this->assessorId       = auth()->id();
-        dd($this->assessment);
+    protected $listeners = [
+        'goToTreeDetails',    
+        'createAssessmentModel',
+        'setCurrentCategory'
+    ];
 
+    public function mount($lastCategoryCompleted = 'tree_species', $assessorId = 1)
+    {   
+        $this->currentCategory  = $lastCategoryCompleted;
+        $this->assessorId       = $assessorId;
     }
 
-    public function goToTreeDetails(Request $request, Tree $tree)
+    public function setCurrentCategory($currentCategory)
     {
-        // // dd($request->all());
-        // $this->treeSpecies      = $tree;
-        // $this->currentCategory  = 'tree_details';
+        $this->reset();
+        $this->currentCategory = $currentCategory;
+    }
+
+    public function goToTreeDetails(Tree $tree)
+    {
+        $this->treeSpecies      = $tree;
+        $this->currentCategory  = 'tree_details';
     }
     
-    // public function createAssessmentModel($assessedTree)
-    // {
-    //     $this->assessment = new Assessment([
-    //         'assessor_id'       => $this->assessorId,
-    //         'assessed_tree_id'  => $assessedTree['id'],
-    //         'last_category_completed' => $this->currentCategory,
-    //         'started_at'        => now()
-    //     ]);
-    //     $this->assessment->save();
-    //     $this->getAssessmentCategories();
-    // }
+    public function createAssessmentModel(AssessedTree $assessedTree)
+    {
+        $this->assessment = new Assessment([
+            'assessor_id'               => $this->assessorId,
+            'assessed_tree_id'          => $assessedTree->id,
+            'last_category_completed'   => $this->currentCategory,
+            'started_at'                => now()
+        ]);
+        $this->assessment->save();
+        $this->getAssessmentCategories();
+    }
     // TODO: move this
     public function getAssessmentCategories()
     {
@@ -68,7 +68,7 @@ class AssessmentForm extends Component
                     'targets'           => collect(TreeTarget::toBase()->get())->groupBy('section')->toArray(),
                 ]
             ];
-        
+            // dd(key($this->categories['assessment_categories']));
         $this->currentCategory = 'assessment_categories';
     }
 

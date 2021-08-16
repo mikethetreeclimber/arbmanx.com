@@ -136,6 +136,8 @@ class TreeAssessmentCategoriesForm extends Component
         $this->dispatchBrowserEvent('saved', 'The Tree\'s '.ucwords($this->currentCategory).' were successfully added to the Hazard Assessment');
         $this->categoryIndex++;
         $this->setCategoriesVariables($this->categoryIndex, $this->sectionIndex);
+        // dd($this->currentCategory, $this->category);
+        $this->emitTo(AssessmentForm::class, 'setCurrentCategory', $this->currentCategory);
     }
 
     public function goToPreviousCategory()
