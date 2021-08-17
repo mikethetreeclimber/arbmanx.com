@@ -5,7 +5,13 @@ namespace App\Http\Livewire\Trees;
 use Error;
 use Exception;
 use Livewire\Component;
+use Illuminate\Http\Request;
+use App\Models\Tree\Assessment;
+use App\Models\Tree\TreeHealth;
+use App\Models\Tree\TreeTarget;
 use Illuminate\Support\Facades\Log;
+use App\Models\Tree\TreeSiteCondition;
+use App\Models\Tree\TreeCharacteristic;
 
 class TreeAssessmentCategoriesForm extends Component
 {
@@ -15,6 +21,7 @@ class TreeAssessmentCategoriesForm extends Component
     public array $categoryTitles;
     public string $currentCategory;
     public int $categoryIndex;
+    public int $categoriesCount;
     public $sections;
     public $sectionTitle;
     public int $sectionIndex;
@@ -23,6 +30,7 @@ class TreeAssessmentCategoriesForm extends Component
     public $selectedValues = [];
     public $sectionsToComplete;
     public $inputType;
+    public $reviewAssessmentModal = false;
     public $checkboxes = [
         'special value',
         'site character',
@@ -31,6 +39,7 @@ class TreeAssessmentCategoriesForm extends Component
         'soil problems',
         'obstructions',
         'use under tree',
+        'exposer to wind',
         'prevailing wind direction',
         'common weather',
         'use under tree'
@@ -40,18 +49,29 @@ class TreeAssessmentCategoriesForm extends Component
         'epicormics',
         'can target be moved?',
         'can target be restricted?',
-        'target within dripline?',
-        'target within 1x the height of the tree?',
-        'target within 1.5x the height of the tree?'
+        'pavement lifted',
+        'target within',
     ];
+//TODO: lots of refactoring and abstractions need to be made 
 //TODO: make a method to get the category, section and form  properties
 // TODO: make this controller reusable for all categories of the assessment
 // TODO: add type column to the categories tables and seeders to identify the type of input using a numeric value
 
-    public function mount($categories, $assessment, $lastCategoryCompleted = null, $lastSectionCompleted = null )
+    public function mount(Request $request, $lastCategoryCompleted = null, $lastSectionCompleted = null)
     {
-        $this->assessment       = $assessment;
+        $this->assessment   = Assessment::findOrFail($request->get('assessment'));
+        $categories =  
+            [
+                'assessment_categories' => 
+                    [
+                        'characteristics'   => collect(TreeCharacteristic::toBase()->get())->groupBy('section')->toArray(),
+                        'health'            => collect(TreeHealth::toBase()->get())->groupBy('section')->toArray(),
+                        'site_conditions'   => collect(TreeSiteCondition::toBase()->get())->groupBy('section')->toArray(),
+                        'targets'           => collect(TreeTarget::toBase()->get())->groupBy('section')->toArray(),
+                    ]
+            ];
         $this->categoryTitles   = array_keys($categories[key($categories)]);
+        $this->categoriesCount    = count($this->categoryTitles) - 1;
         $this->categories       = collect($categories)->flatten(1);
         $this->setCategoriesVariables($lastCategoryCompleted, $lastSectionCompleted);
     }
@@ -73,7 +93,6 @@ class TreeAssessmentCategoriesForm extends Component
         $this->currentCategory  = $this->categoryTitles[$this->categoryIndex];
         // Array below
         $this->category         = $this->categories[$this->categoryIndex];
-        $this->emitTo(AssessmentForm::class, 'setCategory', $this->currentCategory,);
         $this->setSectionVariables();
     }
     
@@ -100,7 +119,9 @@ class TreeAssessmentCategoriesForm extends Component
         }else{
             $this->inputType = 'radio';
         }
-        $this->emitTo(AssessmentForm::class, 'setQueryString',$this->currentCategory, $this->sectionTitle);
+
+        // $this->emitTo(AssessmentForm::class, 'setQueryString',$this->currentCategory, $this->sectionTitle);
+        // $this->render();
     }
 
     public function updatedCategory($value)
@@ -110,7 +131,8 @@ class TreeAssessmentCategoriesForm extends Component
 
     public function setToggleVariable($toggleVariableId)
     {   
-       $this->selectedValues[$this->sectionTitle] = settype($toggleVariableId, 'string');
+        settype($toggleVariableId, 'string');
+       $this->selectedValues[$this->sectionTitle.$toggleVariableId] = $toggleVariableId;
     }
 
     public function goToNextSection()
@@ -160,8 +182,22 @@ class TreeAssessmentCategoriesForm extends Component
         } finally {
             redirect()->back();
         }
+
         $this->selectedValues = [];
-        $this->goToNextCategory();
+
+        switch ($this->categoryIndex) {
+            case $this->categoriesCount:
+                $this->showModal();
+                break;
+            default:
+                $this->goToNextCategory();
+                break;
+        }
+    }
+
+    public function showModal()
+    {
+        $this->reviewAssessmentModal = true;
     }
 
     public function render()

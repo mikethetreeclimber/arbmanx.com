@@ -10,77 +10,47 @@ use App\Models\Tree\TreeTarget;
 use App\Models\Tree\AssessedTree;
 use App\Models\Tree\TreeSiteCondition;
 use App\Models\Tree\TreeCharacteristic;
+use Illuminate\Http\Request;
 
 class AssessmentForm extends Component
 {
-    public $assessment;
     public $assessorId;
     public $treeSpecies;
-    public $categories;
-    public $currentCategory;
-    public $section;
-    protected $queryString = [
-        'currentCategory',
-        'section'
-    ];
 
-    protected $listeners = [
-        'goToTreeDetails',    
-        'createAssessmentModel',
-        'setQueryString'
-    ];
-
-    public function mount($lastCategoryCompleted = 'tree_species', $assessorId = 1)
+    public function mount(Request $request)
     {   
-        $this->section          = null;
-        $this->currentCategory  = $lastCategoryCompleted;
-        $this->assessorId       = $assessorId;
-    }
-
-    public function setQueryString($currentCategory, $section)
-    {
-        $this->reset();
-        $this->currentCategory  = $currentCategory;
-        $this->section  = $section;
+        $this->createAssessmentModel($request->get('assessed_tree'));
     }
     
-    public function goToTreeDetails(Tree $tree)
+    public function createAssessmentModel($assessedTreeId)
     {
-        $this->treeSpecies      = $tree;
-        $this->currentCategory  = 'tree_details';
-    }
-    
-    public function createAssessmentModel(AssessedTree $assessedTree)
-    {
-        $this->assessment = new Assessment([
-            'assessor_id'               => $this->assessorId,
-            'assessed_tree_id'          => $assessedTree->id,
-            'last_category_completed'   => $this->currentCategory,
+        $assessment = new Assessment([
+            'assessor_id'               => auth()->id(),
+            'assessed_tree_id'          => $assessedTreeId,
+            'last_category_completed'   => 'details',
             'started_at'                => now()
         ]);
-        $this->assessment->save();
-        $this->getAssessmentCategories();
+        $assessment->save();
+        return redirect(route('trees.assessment.evaluation', ['assessment' => $assessment]));
     }
 
-    // TODO once to this part of assessment all logic should be called by categries component
-    public function getAssessmentCategories()
-    {
-        // TODO: move to repository maybe that will be called by the component
-         $this->categories =  [
-                'assessment_categories' => [
-                    'characteristics'   => collect(TreeCharacteristic::toBase()->get())->groupBy('section')->toArray(),
-                    'health'            => collect(TreeHealth::toBase()->get())->groupBy('section')->toArray(),
-                    'site_conditions'   => collect(TreeSiteCondition::toBase()->get())->groupBy('section')->toArray(),
-                    'targets'           => collect(TreeTarget::toBase()->get())->groupBy('section')->toArray(),
-                ]
-            ];
-            // TODO move to the categories component
-            $this->currentCategory  = key($this->categories['assessment_categories']);
-            $this->section          = key($this->categories['assessment_categories'][$this->currentCategory]);
-    }
+    // // TODO once to this part of assessment all logic should be called by categries component
+    // public function getAssessmentCategories()
+    // {
+    //     // TODO: move to repository maybe that will be called by the component
+    //     
+    //         // TODO move to the categories component
+    //         $this->currentCategory  = key($this->categories['assessment_categories']);
+    //         $this->section          = key($this->categories['assessment_categories'][$this->currentCategory]);
+    // }
 
-    public function render()
-    {
-        return view('livewire.trees.assessment-form');
-    }
+    // public function showModalRequested()
+    // {
+    //     $this->showModal = true;
+    // }
+
+    // public function render()
+    // {
+    //     return view('livewire.trees.assessment-form');
+    // }
 }

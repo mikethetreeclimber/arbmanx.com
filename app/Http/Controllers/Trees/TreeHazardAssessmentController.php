@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Trees;
 use App\Models\Tree\Assessment;
 use App\Http\Controllers\Controller;
 
-class StartTreeHazardAssessmentController extends Controller
+class TreeHazardAssessmentController extends Controller
 {
 
     public function index()
@@ -15,11 +15,11 @@ class StartTreeHazardAssessmentController extends Controller
 
     public function create()
     {
-        return redirect(route('trees.assessment.form'));
+        return redirect(route('trees.assessment.species'));
     }
 
-    public function edit(Assessment $assessment)
-    {
-        dd($assessment);
-    }
+    // public function edit(Assessment $assessment)
+    // {
+    //     dd($assessment);
+    // }
 }

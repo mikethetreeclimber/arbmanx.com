@@ -12,7 +12,7 @@ class TreeSpeciesSelect extends Component
 
     public $search = '';
     public $category;
-
+    // TODO add filtering and more search options 
     public function updatingSearch()
     {
         $this->resetPage();
@@ -20,7 +20,7 @@ class TreeSpeciesSelect extends Component
 
     public function treeSpeciesAdded(Tree $tree)
     {
-        $this->emitTo(AssessmentForm::class, 'goToTreeDetails', $tree->id);
+        return redirect(route('trees.assessment.details', ['treeSpecies' => $tree]));
     }
 
     public function render()

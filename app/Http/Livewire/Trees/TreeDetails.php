@@ -2,15 +2,14 @@
 
 namespace App\Http\Livewire\Trees;
 
-use App\Models\Tree\AssessedTree;
-use App\Models\Tree\Tree;
 use Livewire\Component;
+use App\Models\Tree\Tree;
 use Illuminate\Http\Request;
+use App\Models\Tree\AssessedTree;
+use App\Http\Livewire\Trees\AssessmentForm;
 
 class TreeDetails extends Component 
 {
-    public $currentCategory;
-    public $assessedTree;
     public $treeId;
     public $ownerId;
     public $treeCommonName;
@@ -19,22 +18,17 @@ class TreeDetails extends Component
     public $spread;
     public $numberOfTrunks;
 
-    protected $listeners = [
-        'createAssessedTreeModel'
-    ];
-
-    public function mount(Tree $treeSpecies, $ownerId = 1)
+    public function mount(Request $request, $ownerId = 1)
     {
-        $this->currentCategory  = 'tree_details';
+        $treeSpecies            = Tree::findOrFail($request->get('treeSpecies'));
         $this->ownerId          = $ownerId;                       
         $this->treeId           = $treeSpecies->id;
-        $this->treeCommonName   = $treeSpecies->common_name;
-
+        $this->treeCommonName   = ucwords($treeSpecies->common_name);
     }
-
+//TODO add validation and dynamic units of measurement 
     public function createAssessedTreeModel()
     {
-        $this->assessedTree = new AssessedTree([
+        $assessedTree = new AssessedTree([
             'tree_id'           => $this->treeId,
             'owner_id'          => $this->ownerId,
             'dbh'               => $this->dbh,
@@ -42,8 +36,9 @@ class TreeDetails extends Component
             'spread'            => $this->spread,
             'number_of_trunks'  => $this->numberOfTrunks
         ]);
-        $this->assessedTree->save();
-        $this->emitTo(AssessmentForm::class, 'createAssessmentModel', $this->assessedTree);
+        
+        $assessedTree->save();
+        return redirect(route('trees.assessment.form', ['assessed_tree' => $assessedTree]));
     }
 
     public function render()
