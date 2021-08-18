@@ -11,11 +11,25 @@ class TreeSpeciesSelect extends Component
     use WithPagination;
 
     public $search = '';
-    public $category;
+    public $confirmSelectedSpecies = false;
+    public $treeToConfirm;
     // TODO add filtering and more search options 
     public function updatingSearch()
     {
         $this->resetPage();
+    }
+
+    public function confirmSelection(Tree $tree = null)
+    {
+        $this->treeToConfirm = $tree;
+        $this->confirmSelectedSpecies = true;
+    }
+
+    public function cancelSelection()
+    {
+    // TODO input unchecked when selection is cancelled 
+        $this->render();
+        $this->confirmSelectedSpecies = false;
     }
 
     public function treeSpeciesAdded(Tree $tree)

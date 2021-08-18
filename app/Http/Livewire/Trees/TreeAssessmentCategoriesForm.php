@@ -35,7 +35,7 @@ class TreeAssessmentCategoriesForm extends Component
         'special value',
         'site character',
         'landscape',
-        'growth obstructions',
+        'growth obstruction',
         'soil problems',
         'obstructions',
         'use under tree',

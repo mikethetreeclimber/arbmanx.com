@@ -1,4 +1,33 @@
 <x-app-layout>
+    <x-modals.confirmation-modal wire:model.defer="confirmSelectedSpecies">
+        <x-slot name="title">
+            <h3 class="text-2xl leading-6 font-medium text-gray-900" id="modal-title">
+                You have selected {{ $treeToConfirm->common_name ?? ' ' }}
+            </h3>
+        </x-slot>
+        <x-slot name="content">
+            <div class="mt-2">
+                <p class="text-sm text-gray-500">
+                    If the selection you have made is correct, proceed wuth the assessment by confirming the selection.
+                    Otherwise cancel to re-select a tree species.
+                </p>
+            </div>
+            {{-- ` Confirm the species selection to proceed
+            {{ $treeToConfirm->common_name ?? '' }} --}}
+        </x-slot>
+        <x-slot name="footer">
+            <div class="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
+                <button wire:click="treeSpeciesAdded({{ $treeToConfirm->id ?? '' }})" type="button"
+                    class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-lime-600 text-base font-medium text-black hover:bg-lime-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm">
+                    Confirm
+                </button>
+                <button wire:click="cancelSelection" type="button"
+                    class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-amber-600 text-base font-medium text-black hover:bg-amber-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm">
+                    Cancel
+                </button>
+            </div>
+        </x-slot>
+    </x-modals.confirmation-modal>
     {{-- //TODO lots of abstractions --}}
     <div class="flex-1 relative z-0 flex overflow-hidden">
         <main class="relative  flex-1 z-0 overflow-auto focus:outline-none">
@@ -40,7 +69,7 @@
                                     <label
                                         class="border-gray-200 rounded-tl-md rounded-tr-md relative border p-4 flex flex-col cursor-pointer md:pl-4 md:pr-6 md:grid md:grid-cols-3">
                                         <div class="flex items-center text-sm">
-                                            <input wire:click="treeSpeciesAdded({{ $tree->id }})" type="radio"
+                                            <input wire:click="confirmSelection({{ $tree }})" type="radio"
                                                 class="h-4 w-4 text-indigo-600 border-gray-300 focus:ring-indigo-500"
                                                 aria-labelledby="pricing-plans-0-label"
                                                 aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
