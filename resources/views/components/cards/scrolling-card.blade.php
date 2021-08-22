@@ -1,4 +1,4 @@
-    <div class="flex-1 flex flex-col h-full">
+    <div class="flex-1 flex flex-col h-full" {{ $attributes }}>
         @isset($header)
             <div class="w-full mx-auto ">
                 {{ $header }}

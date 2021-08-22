@@ -10,8 +10,8 @@ class CreateAssessmentTreeTarget extends Migration
     public function up()
     {
         Schema::create('assessment_tree_target', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('assessment_id')->constrained();
+            $table->primary(['assessment_id', 'tree_target_id'], 'id');
+            $table->foreignId('assessment_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tree_target_id')->constrained();
         });
     }

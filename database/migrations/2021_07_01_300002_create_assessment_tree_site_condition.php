@@ -10,8 +10,8 @@ class CreateAssessmentTreeSiteCondition extends Migration
     public function up()
     {
         Schema::create('assessment_tree_site_condition', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('assessment_id')->constrained();
+            $table->primary(['assessment_id', 'tree_site_condition_id'], 'id');
+            $table->foreignId('assessment_id')->constrained()->cascadeOnDelete();;
             $table->foreignId('tree_site_condition_id')->constrained();
         });
     }

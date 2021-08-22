@@ -10,8 +10,8 @@ class CreateAssessmentTreeHealth extends Migration
     public function up()
     {
         Schema::create('assessment_tree_health', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('assessment_id')->constrained();
+            $table->primary(['assessment_id', 'tree_health_id'], 'id');
+            $table->foreignId('assessment_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tree_health_id')->constrained();
         });
     }

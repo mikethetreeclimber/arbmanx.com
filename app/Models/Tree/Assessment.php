@@ -2,9 +2,10 @@
 
 namespace App\Models\Tree;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Assessment extends Model
 {
@@ -13,7 +14,8 @@ class Assessment extends Model
     protected $guarded = [];
     protected $casts = [
         'completed_at' => 'datetime',
-        'started_at' => 'datetime'
+        'started_at' => 'datetime',
+        'uncomplete_sections' => 'array'
     ];
 
     public function assessor()

@@ -1,8 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\User;
+use App\Models\Tree\AssessedTree;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateAssessmentsTable extends Migration
 {
@@ -15,11 +17,10 @@ class CreateAssessmentsTable extends Migration
     {
         Schema::create('assessments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('assessed_tree_id')->nullable()->constrained('assessed_trees');
-            $table->foreignId('assessor_id')->nullable()->constrained('users');
+            $table->foreignIdFor(AssessedTree::class, 'assessed_tree_id')->nullable();
+            $table->foreignIdFor(User::class, 'assessor_id')->nullable();
             $table->integer('hazard_rating')->nullable();
-            $table->string('last_category_completed')->default('start');
-            $table->json('sections_to_complete')->nullable();
+            $table->json('uncomplete_sections')->nullable();
             $table->timestamp('completed_at')->nullable();
             $table->timestamp('started_at')->nullable();
             $table->timestamps();

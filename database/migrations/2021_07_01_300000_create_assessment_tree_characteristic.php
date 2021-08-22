@@ -9,8 +9,8 @@ class CreateAssessmentTreeCharacteristic extends Migration
     public function up()
     {
         Schema::create('assessment_tree_characteristic', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('assessment_id')->constrained();
+            $table->primary(['assessment_id', 'tree_characteristic_id'], 'id');
+            $table->foreignId('assessment_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tree_characteristic_id')->constrained();
         });
     }

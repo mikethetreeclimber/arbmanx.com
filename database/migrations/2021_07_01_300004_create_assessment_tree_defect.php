@@ -9,8 +9,8 @@ class CreateAssessmentTreeDefect extends Migration
     public function up()
     {
         Schema::create('assessment_tree_defect', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('assessment_id')->constrained();
+            $table->primary(['assessment_id', 'tree_defect_id'], 'id');
+            $table->foreignId('assessment_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tree_defect_id')->constrained();
         });
     }

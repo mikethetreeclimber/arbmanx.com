@@ -30,6 +30,7 @@ class TreeAssessmentCategoriesForm extends Component
     public $selectedValues = [];
     public $sectionsToComplete;
     public $inputType;
+    public $allSections = [];
     public $reviewAssessmentModal = false;
     public $checkboxes = [
         'special value',
@@ -63,7 +64,6 @@ class TreeAssessmentCategoriesForm extends Component
 
     public function mount(Request $request, $lastCategoryCompleted = null, $lastSectionCompleted = null)
     {
-        info('mounted Categories');
         $this->assessment   = Assessment::findOrFail($request->get('assessment'));
         $categories =  
             [
@@ -78,6 +78,14 @@ class TreeAssessmentCategoriesForm extends Component
         $this->categoryTitles   = array_keys($categories[key($categories)]);
         $this->categoriesCount    = count($this->categoryTitles) - 1;
         $this->categories       = collect($categories)->flatten(1);
+
+        //TODO use this list to select the category and section 
+       foreach($categories[key($categories)] as $key => $value){
+            $this->allSections[] = [$key => array_keys($value)];
+            //  [$categories[key($categories)]] = array_keys($category);
+        };
+        // dd(collect($this->allSections)->flatten(1));
+        
         $this->setCategoriesVariables($lastCategoryCompleted, $lastSectionCompleted);
     }
 
@@ -98,6 +106,9 @@ class TreeAssessmentCategoriesForm extends Component
         $this->currentCategory  = $this->categoryTitles[$this->categoryIndex];
         // Array below
         $this->category         = $this->categories[$this->categoryIndex];
+        session([
+            'last_category_completed' => $this->currentCategory 
+        ]);
         $this->setSectionVariables();
     }
     
@@ -113,10 +124,6 @@ class TreeAssessmentCategoriesForm extends Component
             array_push($this->sectionInputs, collect($input)->toArray());
         });
 
-
-        $this->assessment->update([
-            'last_category_completed' => $this->currentCategory.'-'.$this->sectionTitle 
-        ]);
         if(in_array($this->sectionTitle, $this->checkboxes)){
             $this->inputType = 'checkbox';
         }elseif(in_array($this->sectionTitle, $this->toggles)){
@@ -170,7 +177,25 @@ class TreeAssessmentCategoriesForm extends Component
     {
         $this->setCategoriesVariables($this->categoryIndex, $this->sectionIndex);
         // TODO move to a sanitize class or method 
-        $this->sectionsToComplete = array_unique(preg_replace('/\d/', '', array_keys(array_diff(array_filter($this->selectedValues), $this->sections))));
+        $this->sectionsToComplete = [$this->currentCategory => array_diff(
+                array_values($this->sections), 
+                array_unique(
+                    preg_replace('/\d/','',
+                    array_keys(
+                        array_filter($this->selectedValues)
+                    )
+                )
+            )
+        )];
+        if($this->sectionsToComplete !== []){
+            if(!is_null($this->assessment->uncomplete_sections)){
+                $incomplete = $this->assessment->uncomplete_sections;
+                $this->assessment->uncomplete_sections =  array_merge($this->sectionsToComplete, $incomplete);
+            }else{
+                $this->assessment->uncomplete_sections = [$this->sectionsToComplete];
+            }
+                 $this->assessment->save();
+            }
         try {
             collect($this->selectedValues)
             ->filter()
@@ -202,7 +227,7 @@ class TreeAssessmentCategoriesForm extends Component
 
     public function showModal()
     {
-        $this->reviewAssessmentModal = true;
+        $this->emitTo(ReviewAssessment::class, 'showModal');
     }
 
     public function render()

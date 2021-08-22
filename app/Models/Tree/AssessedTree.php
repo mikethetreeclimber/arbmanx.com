@@ -2,6 +2,7 @@
 
 namespace App\Models\Tree;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,5 +31,10 @@ class AssessedTree extends Model
     public function species()
     {
         return $this->belongsTo(Tree::class, 'tree_id');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
     }
 }

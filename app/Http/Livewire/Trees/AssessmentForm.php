@@ -27,7 +27,6 @@ class AssessmentForm extends Component
         $assessment = new Assessment([
             'assessor_id'               => auth()->id(),
             'assessed_tree_id'          => $assessedTreeId,
-            'last_category_completed'   => 'details',
             'started_at'                => now()
         ]);
         $assessment->save();
