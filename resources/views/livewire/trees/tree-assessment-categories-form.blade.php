@@ -8,17 +8,17 @@
         <x-slot name="content">
             <div>
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    Applicant Information
+                    Tree Hazard Evaluation
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                    Personal details and application.
+                    Review the assessment
                 </p>
             </div>
             <div class="mt-5 border-t border-gray-200">
                 <dl class="divide-y divide-gray-200">
                     <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">
-                            Full name
+                            Common Name
                         </dt>
                         <dd class="mt-1 flex text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             <span class="flex-grow">Margot Foster</span>

@@ -52,6 +52,10 @@ class TreeAssessmentCategoriesForm extends Component
         'pavement lifted',
         'target within',
     ];
+    protected $queryString = [
+        'sectionTitle'
+    ];
+
 //TODO: lots of refactoring and abstractions need to be made 
 //TODO: make a method to get the category, section and form  properties
 // TODO: make this controller reusable for all categories of the assessment
@@ -59,6 +63,7 @@ class TreeAssessmentCategoriesForm extends Component
 
     public function mount(Request $request, $lastCategoryCompleted = null, $lastSectionCompleted = null)
     {
+        info('mounted Categories');
         $this->assessment   = Assessment::findOrFail($request->get('assessment'));
         $categories =  
             [
