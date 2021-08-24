@@ -9,6 +9,7 @@ use App\Models\Tree\Assessment;
 class ReviewAssessment extends Component
 {
     public $assessment;
+    public $characteristics;
     public $reviewAssessmentModal = false;
     protected $listeners = [
         'showModal'
@@ -17,14 +18,9 @@ class ReviewAssessment extends Component
     public function mount(Assessment $assessment)
     {
         $this->assessment = $assessment;
-        $this->assessment->with([
-            'tree', 
-            'characteristics', 
-            'health', 
-            'site_conditions', 
-            'targets', 
-            'defects', 
-            'comments'])->get();
+        $uncompleteSection = $this->assessment->uncomplete_sections;
+        // dd(unserialize($uncompleteSection));
+        // $this->characteristics = $assessment->with('characteristics')->where('id', $assessment->id)->first();
     }
 
     public function showModal()
@@ -34,6 +30,13 @@ class ReviewAssessment extends Component
     
     public function render()
     {
-        return view('livewire.trees.review-assessment');
+        return view('livewire.trees.review-assessment', ['assessment' =>  $this->assessment->with([
+            'tree', 
+            'characteristics', 
+            'health', 
+            'site_conditions', 
+            'targets', 
+            'defects', 
+            'comments'])->first()]);
     }
 }

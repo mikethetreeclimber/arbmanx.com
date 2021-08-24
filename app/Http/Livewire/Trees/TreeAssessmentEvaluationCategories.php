@@ -12,8 +12,9 @@ use App\Models\Tree\TreeTarget;
 use Illuminate\Support\Facades\Log;
 use App\Models\Tree\TreeSiteCondition;
 use App\Models\Tree\TreeCharacteristic;
+use App\Models\Tree\TreeDefect;
 
-class TreeAssessmentCategoriesForm extends Component
+class TreeAssessmentEvaluationCategories extends Component
 {
     public $assessment;
     public $categories;
@@ -65,6 +66,7 @@ class TreeAssessmentCategoriesForm extends Component
     public function mount(Request $request, $lastCategoryCompleted = null, $lastSectionCompleted = null)
     {
         $this->assessment   = Assessment::findOrFail($request->get('assessment'));
+        
         $categories =  
             [
                 'assessment_categories' => 
@@ -75,19 +77,25 @@ class TreeAssessmentCategoriesForm extends Component
                         'targets'           => collect(TreeTarget::toBase()->get())->groupBy('section')->toArray(),
                     ]
             ];
-        $this->categoryTitles   = array_keys($categories[key($categories)]);
-        $this->categoriesCount    = count($this->categoryTitles) - 1;
-        $this->categories       = collect($categories)->flatten(1);
+            $this->categoryTitles   = array_keys($categories[key($categories)]);
+            $this->categoriesCount    = count($this->categoryTitles) - 1;
+            $this->categories       = collect($categories)->flatten(1);
+            if(!is_null($this->assessment->uncomplete_sections)){
+                $uncomplete = unserialize($this->assessment->uncomplete_sections);
+            }else{
+                $uncomplete = $this->categories;
+            }
+            foreach ($this->categories as $categoryIndex => $category) {
+                
+            }
 
         //TODO use this list to select the category and section 
        foreach($categories[key($categories)] as $key => $value){
             $this->allSections[] = [$key => array_keys($value)];
-            //  [$categories[key($categories)]] = array_keys($category);
-        };
-        // dd(collect($this->allSections)->flatten(1));
-        
+
         $this->setCategoriesVariables($lastCategoryCompleted, $lastSectionCompleted);
     }
+}
 
     public function setCategoriesVariables($lastCategoryCompleted, $lastSectionCompleted)
     {
@@ -106,6 +114,7 @@ class TreeAssessmentCategoriesForm extends Component
         $this->currentCategory  = $this->categoryTitles[$this->categoryIndex];
         // Array below
         $this->category         = $this->categories[$this->categoryIndex];
+        dd(current($this->category), next($this->category), current($this->category));
         session([
             'last_category_completed' => $this->currentCategory 
         ]);
@@ -131,9 +140,6 @@ class TreeAssessmentCategoriesForm extends Component
         }else{
             $this->inputType = 'radio';
         }
-
-        // $this->emitTo(AssessmentForm::class, 'setQueryString',$this->currentCategory, $this->sectionTitle);
-        // $this->render();
     }
 
     public function updatedCategory($value)
@@ -177,7 +183,7 @@ class TreeAssessmentCategoriesForm extends Component
     {
         $this->setCategoriesVariables($this->categoryIndex, $this->sectionIndex);
         // TODO move to a sanitize class or method 
-        $this->sectionsToComplete = [$this->currentCategory => array_diff(
+        $this->sectionsToComplete = [$this->categoryIndex => array_diff(
                 array_values($this->sections), 
                 array_unique(
                     preg_replace('/\d/','',
@@ -189,13 +195,16 @@ class TreeAssessmentCategoriesForm extends Component
         )];
         if($this->sectionsToComplete !== []){
             if(!is_null($this->assessment->uncomplete_sections)){
-                $incomplete = $this->assessment->uncomplete_sections;
-                $this->assessment->uncomplete_sections =  array_merge($this->sectionsToComplete, $incomplete);
+                $toComplete = unserialize($this->assessment->uncomplete_sections);
+                $merged =  array_merge($toComplete, $this->sectionsToComplete);
+                $this->assessment->uncomplete_sections = serialize($merged);
+                $this->assessment->save();
             }else{
-                $this->assessment->uncomplete_sections = [$this->sectionsToComplete];
-            }
-                 $this->assessment->save();
-            }
+                $this->assessment->uncomplete_sections = serialize($this->sectionsToComplete);
+                $this->assessment->save();
+            } 
+        }
+        $this->sectionsToComplete =  [];
         try {
             collect($this->selectedValues)
             ->filter()
